@@ -1,0 +1,48 @@
+Last login: Mon Sep 23 13:56:41 on ttys004
+/Users/hissam/.zshrc:2: command not found: installed
+hissam@hissamnoMacBook-Pro ~ % nano ~/.zshrc
+
+hissam@hissamnoMacBook-Pro ~ % 
+hissam@hissamnoMacBook-Pro ~ % hissam@hissamnoMacBook-Pro ~ % nano ~/.zshrc
+
+hissam@hissamnoMacBook-Pro ~ %
+zsh: command not found: hissam@hissamnoMacBook-Pro
+zsh: command not found: hissam@hissamnoMacBook-Pro
+hissam@hissamnoMacBook-Pro ~ % nano ~/.zshrc
+
+
+
+
+
+
+
+
+
+
+
+
+
+  UW PICO 5.09                   File: /Users/hissam/.zshrc                     
+
+export JAVA_HOME=$(/usr/libexec/java_home -v 17)  # Use the version you
+installed
+export PATH=$JAVA_HOME/bin:$PATH
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+^G Get Help  ^O WriteOut  ^R Read File ^Y Prev Pg   ^K Cut Text  ^C Cur Pos   
+^X Exit      ^J Justify   ^W Where is  ^V Next Pg   ^U UnCut Text^T To Spell  

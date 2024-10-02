@@ -39,12 +39,9 @@ const images = [
 export default function K2() {
   const navigation = useNavigation(); 
 
-  // Handle category card press
   const handleCardPress = (categoryName) => {
     console.log(`${categoryName} card pressed`);
-    // if (categoryName === "camping") {
       navigation.navigate("HomeStack", { screen: "Camping" }); // Ensure the screen name matches
-    // }
   };
   const data = [
     {

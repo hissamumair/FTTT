@@ -42,9 +42,9 @@ export default function K2() {
   // Handle category card press
   const handleCardPress = (categoryName) => {
     console.log(`${categoryName} card pressed`);
-    if (categoryName === "Camping") {
+    // if (categoryName === "camping") {
       navigation.navigate("HomeStack", { screen: "Camping" }); // Ensure the screen name matches
-    }
+    // }
   };
   const data = [
     {

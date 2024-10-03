@@ -2,7 +2,7 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from '../screens/Dashboard/home';
-import K2 from '../screens/Dashboard/k2';
+import K2 from '../screens/Dashboard/K2/k2';
 import Hickingpoint from '../screens/Dashboard/K2/hickingpoint';
 import Campingpoint from '../screens/Dashboard/K2/campingpoint';
 import Gadget from '../screens/Dashboard/K2/gadget';

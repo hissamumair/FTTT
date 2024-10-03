@@ -5,51 +5,52 @@ import {Card, Divider} from "react-native-paper";
 export default function Safety() {
   const data = [
     {
-      heading:"Camping points",
-      summary:"The standard trekking route to reach the base of K2 is known as the Baltoro Glacier and Concordia Trek. This is one of the most spectacular and challenging treks in the world, offering breathtaking views of some of the highest peaks in the Karakoram Range. Here's a detailed outline of the typical hiking trail leading to K2 Base Camp",
+      heading:"Safety equipments",
+      summary:"For a safe expedition on K2, it is crucial to have specialized safety equipment due to the extreme conditions and high risks involved. Here's a list of essential ",
     },
     {
-      title: "Islamabad to Skardu:",
-      day: "Day 1",
-      desc: "Fly or drive from Islamabad to Skardu, a small town in the Gilgit-Baltistan region, which serves as the gateway to the Karakoram Range.",
+      title: "Safety equipment::",
+      day: "Avalanche Transceiver: ",
+      desc: "(e.g., Black Diamond Guide BT) for locating buried climbers..",
     },
     {
-      title: " Skardu to Askole (3,000 m / 9,842 ft):to Skardu:",
-      day: "Day 2",
+      title: "Personal Safety Devices::",
+      day: "Personal Locator Beacon (PLB): ",
+      desc: "e.g., ACR ResQLink 400) to send distress signals with GPS location.",
+    },
+    {
+      title: "Weather & Environmental Safety:",
+      day: "Weather Meter: ",
       desc: "Drive from Skardu to Askole, the last village accessible by road. The journey takes about 6-8 hours and offers stunning views of the Karakoram landscape..",
     },
     {
-      title: "Askole to Jhula (3,200 m / 10,499 ft):",
-      day: "Day 3",
-      desc: "Drive from Skardu to Askole, the last village accessible by road. The journey takes about 6-8 hours and offers stunning views of the Karakoram landscape..",
+      title: "First Aid & Survival Gear::",
+      day: "Comprehensive First Aid Kit:",
+      desc: "Customized with items like bandages, antiseptics, painkillers, and altitude sickness medication..",
     },
     {
-      title: "Jhula to Paiju (3,420 m / 11,220 ft):",
-      day: "Day 4",
-      desc: "Trek through the rugged terrain along the Braldu River to reach Paiju. This campsite offers stunning views of Paiju Peak and the Trango Towers. Trekking time is about 6-7 hours.",
+      title: "Fire & Heat Source:",
+      day: "Fire Starter Kit:",
+      desc: "Waterproof matches, lighter, and fire starter blocks.",
     },
     {
-      title: "Paiju to Khoburtse (3,810 m / 12,500 ft):",
-      day: "Day 5",
-      desc: "Trek through the rugged terrain along the Braldu River to reach Paiju. This campsite offers stunning views of Paiju Peak and the Trango Towers. Trekking time is about 6-7 hours.",
-    },
-    {
-      title: "Khoburtse to Urdukas (4,130 m / 13,550 ft):",
-      day: "Day 6",
-      desc: ".A short but challenging trek along the Baltoro Glacier to reach Urdukas, a beautiful campsite with views of the Karakoram peaks. Trekking time is about 4-5 hours.",
+      title: "Lighting & Visibility:",
+      day: "Headlamp:",
+      desc: "(e.g., Petzl NAO+) with high luminosity and long battery life for night-time visibility.",
     },
   ];
 
   const images = [
-    require("../../../assets/icons/k22.png"),
-    require("../../../assets/icons/k21.png"),
-    require("../../../assets/icons/k22.png"),
-    require("../../../assets/icons/k22.png"),
+    require("../../../assets/icons/equipment.png"),
+    require("../../../assets/icons/tools3.jpg"),
+    require("../../../assets/icons/tools4.jpg"),
+    require("../../../assets/icons/tools2.jpg"),
   ];
   return (
-    <View style={{flex:1}}>
+    <ScrollView>
+    <View style={{flex:1,justifyContent:"center",margin:10}}>
       {data.map((item, index) => (
-         <View key={index} style={{marginVertical: 5,marginBottom: 10 }}>
+         <View key={index} style={{marginVertical: 15,marginBottom: 20 }}>
          {item.heading && (
            <>
              <Text style={{fontSize: 13, fontWeight: "bold",color:"black"}}>{item.heading}</Text>
@@ -66,86 +67,54 @@ export default function Safety() {
         </View> // Closing this View here
       ))}
      
-      <Card style={{backgroundColor: "#B3E5FC", padding: 10, borderRadius: 10}}>
-        <Card.Title
-          title="Important Notes"
-          titleStyle={{color: "#333"}}
-          subtitleStyle={{color: "#666"}}
-        />
-        <Card.Content>
-          <Text style={{marginBottom: 5, color: "#333", fontSize: 10}}>
-            Duration: The entire trek typically takes 19-21 days, depending on
-            weather and conditions.
-          </Text>
-          <Divider style={{marginVertical: 5}} />
-          <Text style={{marginBottom: 5, color: "#333", fontSize: 10}}>
-            Best Time to Trek: June to August.
-          </Text>
-          <Divider style={{marginVertical: 5}} />
-          <Text style={{marginBottom: 5, color: "#333", fontSize: 10}}>
-            Physical Fitness: This is a strenuous trek, requiring good physical
-            condition, experience with high-altitude trekking, and mental
-            endurance.
-          </Text>
-          <Divider style={{marginVertical: 5}} />
-          <Text style={{marginBottom: 5, color: "#333", fontSize: 10}}>
-            Permits: Special permits are required to enter the restricted areas
-            of the Karakoram Range.
-          </Text>
-          <Divider style={{marginVertical: 5}} />
-          <Text style={{color: "#333", fontSize: 10}}>
-            The K2 Base Camp trek offers an unforgettable experience for
-            trekkers, providing some of the most spectacular mountain views and
-            a true sense of adventure.
-          </Text>
-        </Card.Content>
-        <Card.Actions></Card.Actions>
-      </Card>
-      <View style={{justifyContent: "center", flex: 1, alignItems: "center"}}>
-        <Text
-          style={{
-            fontSize: 18,
-            alignSelf: "flex-start",
-            color: "black",
-            marginBottom: 10,
-          }}>
-          Hiking Location
-        </Text>
-        <Image
-          source={require("../../../assets/icons/mapk2.png")} // Correct path to your image
-          style={{width: "100%", resizeMode: "contain", marginTop: -400}} // Set desired dimensions and resize mode
-        />
-      </View>
-      <View
+     <View
         style={{
           justifyContent: "center",
           justifyItem: "center",
-          marginTop: -380,
+          // marginTop: -380,
         }}>
         <Text
           style={{
             fontSize: 15,
             fontWeight: "bold",
             marginVertical: 5,
+            // marginTop:90,
             color: "black",
           }}>
-          Photo Gallery
-        </Text>
+Photos of Safety equipment        </Text>
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          <View style={{flexDirection: "row", alignItems: "center"}}>
+          <View
+            style={{flexDirection: "row", alignItems: "center", padding: 15}}>
             {images.map((image, index) => (
-            <Image
-              key={index}
-              source={image}
-              style={{ width: 100, height: 100, marginRight: 10 }}
-            />
-          ))}
+              <Image
+                key={index}
+                source={image}
+                style={{width: 120, height: 180, marginRight: 10}}
+              />
+            ))}
           </View>
         </ScrollView>
       </View>
+      <Card style={{backgroundColor: "#B3E5FC", borderRadius: 10,height:"10%",width:"95%"}}>
+        <Card.Title
+          title="Important Notes"
+          titleStyle={{color: "#333",fontWeight:"bold"}}
+          subtitleStyle={{color: "#666"}}
+        />
+        <Card.Content>
+          <Text style={{margin:10, color: "#333", fontSize: 10,marginTop:-10,fontWeight:"600"}}>
+          Use these equipment with the complete guide of a professional doctor.
+          </Text>
+        
+        </Card.Content>
+        <Card.Actions></Card.Actions>
+      </Card>
     </View>
+    </ScrollView>
+
   );
 }
+
 
 
 

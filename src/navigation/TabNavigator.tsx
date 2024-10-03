@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import Profile from '../components/Profile';
 
-import Booking from '../components/Booking';
+import Booking from '../screens/Dashboard/booking/booking';
 import Home from '../screens/Dashboard/home';
 import Search from '../components/Search';
 import { CommonActions } from '@react-navigation/native';

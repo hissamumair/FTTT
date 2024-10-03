@@ -181,56 +181,7 @@ export default function Gadget() {
         </View>
       ))}
 
-      {/* <Card style={{backgroundColor: "#B3E5FC", padding: 10, borderRadius: 10}}>
-        <Card.Title
-          title="Important Notes"
-          titleStyle={{color: "#333"}}
-          subtitleStyle={{color: "#666"}}
-        />
-        <Card.Content>
-          <Text style={{marginBottom: 5, color: "#333", fontSize: 10}}>
-            Duration: The entire trek typically takes 19-21 days, depending on
-            weather and conditions.
-          </Text>
-          <Divider style={{marginVertical: 5}} />
-          <Text style={{marginBottom: 5, color: "#333", fontSize: 10}}>
-            Best Time to Trek: June to August.
-          </Text>
-          <Divider style={{marginVertical: 5}} />
-          <Text style={{marginBottom: 5, color: "#333", fontSize: 10}}>
-            Physical Fitness: This is a strenuous trek, requiring good physical
-            condition, experience with high-altitude trekking, and mental
-            endurance.
-          </Text>
-          <Divider style={{marginVertical: 5}} />
-          <Text style={{marginBottom: 5, color: "#333", fontSize: 10}}>
-            Permits: Special permits are required to enter the restricted areas
-            of the Karakoram Range.
-          </Text>
-          <Divider style={{marginVertical: 5}} />
-          <Text style={{color: "#333", fontSize: 10}}>
-            The K2 Base Camp trek offers an unforgettable experience for
-            trekkers, providing some of the most spectacular mountain views and
-            a true sense of adventure.
-          </Text>
-        </Card.Content>
-        <Card.Actions></Card.Actions>
-      </Card> */}
-      {/* <View style={{justifyContent: "center", flex: 1, alignItems: "center"}}>
-        <Text
-          style={{
-            fontSize: 18,
-            alignSelf: "flex-start",
-            color: "black",
-            marginBottom: 10,
-          }}>
-          Hiking Location
-        </Text>
-        <Image
-          source={require("../../../assets/icons/mapk2.png")} // Correct path to your image
-          style={{width: "100%", resizeMode: "contain", marginTop: -400}} // Set desired dimensions and resize mode
-        />
-      </View> */}
+     
       <View
         style={{
           justifyContent: "center",

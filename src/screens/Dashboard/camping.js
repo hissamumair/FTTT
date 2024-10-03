@@ -39,10 +39,8 @@ import {
   export default function Camping() {
     const navigation = useNavigation(); // Use the useNavigation hook to get the navigation object
   
-    // Handle category card press
     const handleCardPress = (categoryName) => {
       console.log(`Selected category: ${categoryName}`);
-      // Add navigation or any other functionality here
     };
   
     const data = [

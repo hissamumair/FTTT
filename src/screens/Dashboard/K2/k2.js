@@ -17,6 +17,8 @@ import Safety from "./safety";
 import Weather from "./weather";
 import Review from "./review";
 import Booking from "../../../components/Booking";
+import Chatscreen from "./chatscreen";
+import Startchat from "./startchat";
 
 // Categories array
 const categories = [
@@ -42,19 +44,25 @@ const categories = [
     id: "4",
     name: "safety",
     label: "Safety",
-    source: require("../../../assets/icons/bus.png"),
+    source: require("../../../assets/icons/labour.png"),
   },
   {
     id: "5",
     name: "weather",
     label: "Weather",
-    source: require("../../../assets/icons/bus.png"),
+    source: require("../../../assets/icons/weather.png"),
   }, // Added more categories for better demonstration
   {
     id: "6",
     label: "Review",
     name: "review",
-    source: require("../../../assets/icons/bus.png"),
+    source: require("../../../assets/icons/customer-review.png"),
+  },
+  {
+    id: "7",
+    label: "Chats",
+    name: "chatscreen",
+    source: require("../../../assets/icons/chat.png"),
   },
 ];
 
@@ -68,12 +76,13 @@ export default function K2() {
   const [selectedTab, setSelectedTab] = useState("hiking");
 
   return (
-    <ScrollView style={{padding: 15}}>
-      <View style={{width: "100%"}}>
+    <ScrollView  style={{padding: 15}}>
+      <View style={{width: "110%"}}>
         <ImageBackground
           source={require("../../../assets/icons/wellcome.png")}
           style={{
             flex: 1,
+            // height:70,
             justifyContent: "center",
             alignItems: "flex-start", // Align items to the left
             paddingLeft: 20, // Add padding to the left for spacing
@@ -171,6 +180,10 @@ export default function K2() {
         {selectedTab == "weather" && <Weather/>}
         {selectedTab == "review" && <Review/>}
         {selectedTab == "booking" && <Booking/>}
+        {selectedTab == "chatscreen" && <Chatscreen/>}
+        {selectedTab == "Startchat" && <Startchat/>}
+
+
 
 
 

@@ -1,169 +1,194 @@
-import React from 'react';
-import {View, Text, ImageBackground, StyleSheet} from 'react-native';
-import {Button, TextInput} from 'react-native-paper';
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
+import { TextInput, Button, Checkbox, Menu } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
-import HomeStack from '../../../navigation/HomeStack';
-import Home from '../../Dashboard/home';
-// import Login from '../Login/Login';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default function Signup1() {
-    const navigation = useNavigation();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState(''); // New state for Confirm Password
+  const [name, setName] = useState(''); // New state for Name
+  const [contactNo, setContactNo] = useState(''); // New state for Contact No
+  const [secureTextEntry, setSecureTextEntry] = useState(true);
+  const [checked, setChecked] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const [selectedRole, setSelectedRole] = useState('Admin');
+  const roles = ['Admin', 'User', 'Guest']; // Example roles
+  const navigation = useNavigation();
+
+  const handleSignup = () => {
+    console.log('Signing up with', { name, email, contactNo, password, confirmPassword });
+    navigation.navigate('BottomTabs'); // Navigate to the HomeStack
+  };
+  const openMenu = () => setVisible(true);
+  const closeMenu = () => setVisible(false);
+  const selectRole = (role) => {
+    setSelectedRole(role);
+    closeMenu();
+  };
 
   return (
-    <ImageBackground
-      source={require('../../../assets/icons/splash.png')}
-      
-      style={{
-        flex: 1,
-        
+    <View style={{ flex: 1, padding: 20, backgroundColor: '#f9f9f9', justifyContent: 'flex-start' }}>
+      <Text style={{ fontSize: 38, fontWeight: 'bold', color: 'green', textAlign: 'center', marginBottom: 20 }}>
+       Sign Up
+      </Text>
 
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-      }}>
+      <Menu
+        visible={visible}
+        onDismiss={closeMenu}
+        anchor={
+          <TouchableOpacity
+            onPress={openMenu}
+            style={{
+              marginBottom: 0,
+              height: 60,
+              borderWidth: 1,
+              borderColor: '#ccc',
+              borderRadius: 5,
+              justifyContent: 'center',
+              paddingHorizontal: 10,
+            }}
+          >
+            <Text>{selectedRole}</Text>
+            <Icon name="chevron-down" size={17} />
+          </TouchableOpacity>
+        }
+      >
+        {roles.map((role) => (
+          <Menu.Item key={role} onPress={() => selectRole(role)} title={role} />
+        ))}
+      </Menu>
 
-      <View style={styles.formContainer}>
-        <Text style={styles.title}>Sign Up</Text>
+      <TextInput
+        label="Name"
+        value={name}
+        onChangeText={setName}
+        mode="outlined"
+        style={{ marginBottom: 10, marginTop: 10 }}
+      />
 
-        <View style={styles.nameContainer}>
-          <TextInput
-            label="First Name"
-            mode="outlined"
-            style={styles.nameInput}
-            placeholder="Enter your first name"
-            placeholderTextColor="rgba(255, 255, 255, 0.6)"
-            theme={{colors: {primary: 'white', underlineColor: 'transparent'}}}
-            labelStyle={styles.label}
-            contentStyle={styles.inputContent}
+      <TextInput
+        label="Contact No"
+        value={contactNo}
+        onChangeText={setContactNo}
+        mode="outlined"
+        style={{ marginBottom: 10 }}
+        keyboardType="phone-pad"
+      />
+
+      <TextInput
+        label="Email ID"
+        value={email}
+        onChangeText={setEmail}
+        mode="outlined"
+        style={{ marginBottom: 10, marginTop: 10 }}
+        keyboardType="email-address"
+      />
+
+      <TextInput
+        label="Password"
+        value={password}
+        onChangeText={setPassword}
+        mode="outlined"
+        secureTextEntry={secureTextEntry}
+        right={
+          <TextInput.Icon
+            name={secureTextEntry ? 'eye-off' : 'eye'}
+            onPress={() => setSecureTextEntry(!secureTextEntry)}
           />
-          <TextInput
-            label="Last Name"
-            mode="outlined"
-            style={styles.nameInput}
-            placeholder="Enter your last name"
-            placeholderTextColor="rgba(255, 255, 255, 0.6)"
-            theme={{colors: {primary: 'white', underlineColor: 'transparent'}}}
-            labelStyle={styles.label}
-            contentStyle={styles.inputContent}
+        }
+        style={{ marginBottom: 10 }}
+      />
+
+      <TextInput
+        label="Confirm Password"
+        value={confirmPassword}
+        onChangeText={setConfirmPassword}
+        mode="outlined"
+        secureTextEntry={secureTextEntry}
+        right={
+          <TextInput.Icon
+            name={secureTextEntry ? 'eye-off' : 'eye'}
+            onPress={() => setSecureTextEntry(!secureTextEntry)}
           />
+        }
+        style={{ marginBottom: 15 }}
+      />
+
+      <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
+        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+          <Checkbox status={checked ? 'checked' : 'unchecked'} onPress={() => setChecked(!checked)} />
+          <Text style={{ fontSize: 14 }}>Remember me</Text>
         </View>
 
-        <View style={styles.inputContainer}>
-          <TextInput
-            label="Email ID"
-            mode="outlined"
-            style={styles.input}
-            placeholder="Enter your email"
-            placeholderTextColor="rgba(255, 255, 255, 0.6)"
-            theme={{colors: {primary: 'white', underlineColor: 'transparent'}}}
-            labelStyle={styles.label}
-            contentStyle={styles.inputContent}
-          />
-          <TextInput
-            label="Phone Number"
-            mode="outlined"
-            style={styles.input}
-            placeholder="Enter your phone number"
-            placeholderTextColor="rgba(255, 255, 255, 0.6)"
-            theme={{colors: {primary: 'white', underlineColor: 'transparent'}}}
-            labelStyle={styles.label}
-            contentStyle={styles.inputContent}
-          />
-          <TextInput
-            label="Password"
-            mode="outlined"
-            secureTextEntry
-            style={styles.input}
-            placeholder="Enter your password"
-            placeholderTextColor="rgba(255, 255, 255, 0.6)"
-            theme={{colors: {primary: 'white', underlineColor: 'transparent'}}}
-            labelStyle={styles.label}
-            contentStyle={styles.inputContent}
-          />
-        </View>
-
-        <Button
-  mode="contained"
-  style={styles.signUpButton}
-  labelStyle={styles.signUpButtonText}
-  // onPress={()=>console.log("object")}>
-   onPress={() => navigation.navigate("BottomTabs")}> 
-  Sign Up
-</Button>
-
+        <TouchableOpacity onPress={() => navigation.navigate('Forgetpassword')}>
+          <Text style={{ fontSize: 14, color: 'green' }}>Forget password?</Text>
+        </TouchableOpacity>
       </View>
 
-    </ImageBackground>
+      <TouchableOpacity
+        onPress={handleSignup}
+        style={{
+          marginBottom: 20,
+          opacity: 0.8,
+          backgroundColor: 'green',
+          paddingVertical: 10,
+          borderRadius: 5,
+          alignItems: 'center', 
+        }}
+      >
+        <Text style={{ fontSize: 18, color: 'white' }}>Sign Up</Text>
+      </TouchableOpacity>
+     
+      <View style={{ flexDirection: 'row', alignItems: 'center', marginVertical: 0,marginTop:-10 }}>
+        <View style={{ flex: 1, height: 1, backgroundColor: '#ccc', marginRight: 10, }} />
+        <Text style={{ textAlign: 'center', marginHorizontal: 10, color: "black" }}>Or login with</Text>
+        <View style={{ flex: 1, height: 1, backgroundColor: '#ccc', marginLeft: 10 }} />
+      </View>
+
+      <View style={{ width: '100%', alignItems: 'center',margin:1 }}>
+        <TouchableOpacity
+          onPress={() => console.log('Google Login')}
+          style={{
+            width: '90%', 
+            height: 50, 
+            marginBottom: 10,
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
+            borderWidth: 1, 
+            borderColor: '#ccc', 
+            borderRadius: 5, 
+          }}
+        >
+          <Image
+            source={require('../../../assets/icons/google.png')} 
+            style={{ width: 24, height: 24, marginRight: 10 }} 
+          />
+          <Text style={{ fontSize: 16 }}>Google Account</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          onPress={() => console.log('Facebook Login')}
+          style={{
+            width: '90%', 
+            height: 50, 
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
+            borderWidth: 1, 
+            borderColor: '#ccc', 
+            borderRadius: 5, 
+          }}
+        >
+          <Image
+            source={require('../../../assets/icons/facebook.png')} 
+            style={{ width: 24, height: 24, marginRight: 10 }} 
+          />
+          <Text style={{ fontSize: 16 }}>Facebook Account</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  image: {
-    width: '100%',
-    height: '100%',
-    position: 'absolute',
-  },
-  overlay: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: 'rgba(30, 30, 30, 0.5)', // Dark overlay for contrast
-  },
-  formContainer: {
-    width: '95%',
-    padding: 20,
-    backgroundColor: 'rgba(30, 30, 30, .8)',
-    borderRadius: 10,
-
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    marginBottom: 20,
-    color: 'white',
-  },
-  nameContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 15,
-  },
-  nameInput: {
-    flex: 1,
-    marginHorizontal: 5,
-    backgroundColor: 'rgba(30, 30, 30, 0.8)',
-    height: 40,
-  },
-  inputContainer: {
-    marginBottom: 15, // Add some margin to separate from button
-  },
-  input: {
-    width: '100%', // Make inputs full width
-    marginBottom: 10, // Add space between inputs
-    backgroundColor: 'rgba(30, 30, 30, 0.8)',
-    height: 40,
-  },
-  inputContent: {
-    height: 49,
-    paddingVertical: 0,
-  },
-  label: {
-    color: 'white',
-    fontSize: 14,
-  },
-  signUpButton: {
-    marginTop: 50,
-    backgroundColor: 'white',
-    borderRadius: 10,
-    borderWidth: 5,
-  },
-  signUpButtonText: {
-    color: 'black',
-  },
-});

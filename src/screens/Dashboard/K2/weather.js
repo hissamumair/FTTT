@@ -28,7 +28,7 @@ const Weather = () => {
             <Image source={require('../../../assets/icons/wind.png')} style={{ width: 90, height: 60 }} />
             <Text>Partly Cold</Text>
           </View>
-          <Text style={{ fontSize: 40, fontWeight: 'bold', marginTop: -120 }}>{/* Move -5 text upward */}
+          <Text style={{ fontSize: 40, fontWeight: 'bold', marginTop: 0,marginVertical:20,marginLeft:-25 }}>{/* Move -5 text upward */}
             -5
           </Text>
         </View>

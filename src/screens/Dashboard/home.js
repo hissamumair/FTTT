@@ -1,9 +1,25 @@
-import {Text, View, Image, ScrollView, ImageBackground} from "react-native";
+import {
+  Text,
+  View,
+  Image,
+  ScrollView,
+  ImageBackground,
+  Dimensions,
+} from "react-native";
 import React, {useState} from "react";
 import {useNavigation} from "@react-navigation/native";
-import {Avatar, IconButton, Searchbar, icon} from "react-native-paper";
+import {Avatar, IconButton, Searchbar} from "react-native-paper";
 import {TouchableOpacity} from "react-native";
-import TabNavigator from "../../navigation/TabNavigator";
+import Menuscreen from "../menuscreen";
+// import { IconButton } from 'react-native-paper';
+import { MaterialCommunityIcons } from 'react-native-vector-icons'; // Import the icons
+
+// import TabNavigator from "../../navigation/TabNavigator";
+// import { Screen } from "react-native-screens";
+// import Drawer from "../../navigation/Drawer";
+
+// Get screen dimensions
+const {width, height} = Dimensions.get("window");
 
 export default function Home() {
   const navigation = useNavigation();
@@ -13,10 +29,6 @@ export default function Home() {
     console.log("Searching for:", searchQuery);
   };
 
-  const handleCardPress = cardName => {
-    console.log(`${cardName} card pressed`);
-  };
-
   const expeditions = [
     {
       id: "1",
@@ -24,23 +36,20 @@ export default function Home() {
       description:
         "K2, the second-highest mountain in the world, towers at 8,611 meters (28,251 feet)..",
       price: "PKR 15,000",
-      source: require("../../assets/icons/parbat.png"),
+      source: require("../../assets/icons/k2.png"),
     },
     {
       id: "2",
       title: "Karakorum",
-      description:
-        "K2, the second-highest mountain in the world, towers at 8,611 meters (28,251 feet)..",
-
+      description: "Karakoram is a mountain range in Pakistan..",
       price: "PKR 15,000",
-      source: require("../../assets/icons/k2.png"), // Replace with your Karakorum image path
+      source: require("../../assets/icons/parbat.png"),
     },
     {
       id: "3",
       title: "K2",
       description:
         "K2, the second-highest mountain in the world, towers at 8,611 meters (28,251 feet)..",
-
       price: "PKR 15,000",
       source: require("../../assets/icons/parbat.png"),
     },
@@ -58,7 +67,7 @@ export default function Home() {
     },
   ];
 
-  const renderExpeditionItem = (item, navigation) => (
+  const renderExpeditionItem = item => (
     <View
       style={{position: "relative", marginLeft: 10, marginBottom: 15}}
       key={item.id}>
@@ -87,7 +96,7 @@ export default function Home() {
           bottom: 0,
           backgroundColor: "rgba(0, 0, 0, 0.5)",
           borderRadius: 10,
-          width:168,
+          width: 168,
           alignItems: "center",
         }}>
         <Text
@@ -111,66 +120,60 @@ export default function Home() {
               style={{
                 color: "white",
                 fontSize: 12,
-                textAlign: "center", // Center the text
+                textAlign: "center",
               }}>
               {item.description}
             </Text>
           </View>
         )}
-        <View style={{flexDirection:"row", alignItems:"center", justifyContent:"space-between"}}>
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+          }}>
           <Text style={{color: "white", fontSize: 14, textAlign: "center"}}>
             {item.price}
           </Text>
-         <IconButton
-           icon="arrow-right-circle" // Use the arrow-right-circle icon
-           iconColor="green"
-           style={{ 
-             backgroundColor: 'transparent', 
-            
-           }} 
-           onPress={() => navigation.navigate('HomeStack', { screen: 'K2' })} // Navigate to K2 screen with parameters
-         />
         </View>
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate("HomeStack", {
+              screen: "K2",
+              params: {screen: "K2"},
+            })
+          }
+          style={{
+            backgroundColor: "green",
+            borderRadius: 10,
+            padding: 10,
+            marginTop: 10,
+            width: "100%",
+            alignItems: "center",
+          }}>
+          <Text style={{color: "white", fontWeight: "bold"}}>View Details</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
 
-  const catergories = [
-    {id: "1", name: "Hotels", source: require("../../assets/icons/hotel.png")},
-    {id: "2", name: "Planes", source: require("../../assets/icons/plane.png")},
-    {id: "3", name: "Bus", source: require("../../assets/icons/car.png")},
-    {id: "4", name: "Bus", source: require("../../assets/icons/bus.png")},
-  ];
-  const tracking = [
-    {
-      id: "1",
-      name: "hicking",
-      source: require("../../assets/icons/hicking.png"),
-    },
-    {
-      id: "2",
-      name: "tracking",
-      source: require("../../assets/icons/tracking.png"),
-    },
-    {
-      id: "3",
-      name: "hicking",
-      source: require("../../assets/icons/hicking.png"),
-    },
-    {
-      id: "4",
-      name: "tracking",
-      source: require("../../assets/icons/tracking.png"),
-    },
-  ];
-
   return (
-    <ScrollView style={{flex: 1, padding: 15}}>
-      <View style={{width: "100%", height: "20%"}}>
+    <ScrollView style={{flex: 1, padding: 10}}>
+      <View style={{width: "110%", height: "30%"}}>
+      <IconButton
+  icon="settings" // Correct icon name
+  size={20}
+  onPress={() => navigation.navigate("HomeStack", {
+    screen: "Menuscreen", // Ensure the screen name matches exactly
+    params: { screen: "Menuscreen" } // Optional if you don't have nested navigation
+  })}
+/>
+
         <ImageBackground
           source={require("../../assets/icons/wellcome.png")}
           style={{
             flex: 1,
+            marginTop: -20,
             justifyContent: "center",
             paddingHorizontal: 20,
           }}
@@ -179,9 +182,8 @@ export default function Home() {
             style={{
               color: "black",
               fontSize: 18,
-              // fontWeight: "bold",
             }}>
-            Wellome to,
+            Welcome to,
           </Text>
           <Text
             style={{
@@ -201,14 +203,14 @@ export default function Home() {
           </Text>
         </ImageBackground>
       </View>
+
       <View
         style={{
           flexDirection: "row",
           alignItems: "center",
           marginTop: 20,
           justifyContent: "space-between",
-        }}></View>
-      <View style={{position: "relative"}}>
+        }}>
         <Searchbar
           placeholder="Search location here"
           onChangeText={setSearchQuery}
@@ -216,142 +218,63 @@ export default function Home() {
           style={{
             backgroundColor: "rgba(30, 30, 30, 0.2)",
             borderRadius: 10,
+            flex: 1,
           }}
-          inputStyle={{color: "white"}}
+          inputStyle={{
+            color: "white",
+            paddingLeft: 0,
+          }}
+          icon={() => null}
+          clearIcon={() => null}
         />
+
         <IconButton
           onPress={handleSearch}
+          icon="magnify"
           style={{
             position: "absolute",
             right: 10,
             marginTop: 10,
-            color: "white",
+            color: "red", // Set icon color to green
           }}
         />
       </View>
 
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "flex-start",
-          margin: 15,
-          width: "100%",
-          height: "7%",
-          marginLeft: -9,
-        }}>
-        {catergories.map((category, index) => (
-          <TouchableOpacity
-            key={index}
-            onPress={() => handleCardPress(category.name)}>
-            <View
-              style={{
-                backgroundColor: "#fff",
-                borderRadius: 16,
-                padding: 15,
-                elevation: 3,
-                shadowColor: "#000",
-                shadowOffset: {width: 0, height: 2},
-                shadowOpacity: 0.1,
-                shadowRadius: 4,
-                width: 87,
-                marginRight: index < catergories.length - 1 ? 10 : 0,
-              }}>
-              <View style={{flexDirection: "row", alignItems: "center"}}>
-                <Text style={{fontSize: 10, marginRight: 10}}>
-                  {category.name}
-                </Text>
-                <Image
-                  source={category.source}
-                  style={{
-                    height: 25,
-                    width: 44,
-                    marginLeft: -10,
-                    resizeMode: "contain",
-                  }}
-                />
-              </View>
-            </View>
-          </TouchableOpacity>
-        ))}
-      </View>
-
       <View>
-        <Text style={{fontSize: 15, color: "black", fontWeight: "bold"}}>
-          Featured Expeditions
+        <Text
+          style={{
+            fontSize: 15,
+            color: "black",
+            fontWeight: "bold",
+            margin: 10,
+          }}>
+          Most Popular Places
         </Text>
         <ScrollView
           horizontal
           showsHorizontalScrollIndicator={false}
           style={{marginTop: 10}}>
-          {expeditions.map(item => renderExpeditionItem(item, navigation))}
+          {expeditions.map(item => renderExpeditionItem(item))}
         </ScrollView>
       </View>
-      <Text style={{fontSize: 17, fontWeight: "bold", color: "black"}}>
-        Categories
-      </Text>
+
       <View
         style={{
-          flexDirection: "row",
-          justifyContent: "flex-start",
-          margin: 15,
-          width: "100%",
-          height: "7%",
-          marginLeft: 0,
+          flex: 1,
+          justifyContent: "center",
+          width: width,
+          height: height * 0.2,
         }}>
-        {tracking.map((track, index) => (
-          <TouchableOpacity
-            key={index}
-            onPress={() => handleCardPress(track.name)}>
-            <View
-              style={{
-                backgroundColor: "#fff",
-                borderRadius: 16,
-                padding: 15,
-                elevation: 1,
-                shadowColor: "#000",
-                shadowOffset: {width: 0, height: 2},
-                width: 77,
-                height: 60,
-                marginTop: -10,
-                marginRight: index < tracking.length - 1 ? 10 : 0,
-              }}>
-              <View style={{flexDirection: "column", alignItems: "center"}}>
-                <Image
-                  source={track.source}
-                  style={{
-                    height: 25,
-                    width: 30,
-                    marginLeft: -10,
-                    marginTop: -8,
-                  }}
-                />
-                <Text style={{fontSize: 10, marginRight: 10, marginTop: 10}}>
-                  {track.name}
-                </Text>
-              </View>
-            </View>
-          </TouchableOpacity>
-        ))}
-      </View>
-
-      {/* <Image
-        size={48}
-        source={require("../../assets/icons/map.png")}
-        style={
-        { marginTop: 20, height: 150, width: "100%", borderRadius: 12 }}
-      /> */}
-
-      <View style={{borderRadius: 12, width: "100%"}}>
         <Image
-          source={require("../../assets/icons/map.png")}
+          source={require("../../assets/icons/mapmap.png")}
           style={{
-            height: "100%",
             width: "100%",
-            borderRadius: 12,
+            height: "100%",
+            resizeMode: "cover",
           }}
-          resizeMode="cover"
         />
       </View>
+      {/* <TabNavigator /> */}
     </ScrollView>
   );
 }

@@ -4,13 +4,15 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { BottomNavigation } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
-import Profile from '../components/Profile';
 
 import Booking from '../screens/Dashboard/booking/booking';
 import Home from '../screens/Dashboard/home';
 import Search from '../components/Search';
 import { CommonActions } from '@react-navigation/native';
+import Profile from '../screens/Dashboard/profile/Profile';
+import Currency from '../screens/Dashboard/currency';
 
 const Tab = createBottomTabNavigator();
 
@@ -71,16 +73,16 @@ export default function TabNavigator() {
           },
         }}
       />
-      <Tab.Screen
-        name="Search"
-        component={Search}
-        options={{
-          tabBarLabel: 'Search',
-          tabBarIcon: ({ color, size }) => {
-            return <Icon name="magnify" size={size} color={color} />;
-          },
-        }}
-      />
+     <Tab.Screen
+  name="Currency"
+  component={Currency}
+  options={{
+    tabBarLabel: 'Currency',
+    tabBarIcon: ({ color, size }) => {
+      return <MaterialIcons name="currency-exchange" size={size} color={color} />; // Use any currency icon like "dollar"
+    },
+  }}
+/>
       <Tab.Screen
         name="Booking"
         component={Booking}

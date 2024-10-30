@@ -30,11 +30,7 @@ export default function App() {
           component={TabNavigator}
           options={{headerShown: false}}
         />
-        {/* <Stack.Screen
-          name="Drawer"
-          component={Drawer}
-          options={{headerShown: false}}
-        /> */}
+    
 
         <Stack.Screen
           name="HomeStack"

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity, ScrollView } from 'react-native'; // Import ScrollView
 import { useNavigation } from '@react-navigation/native'; // Import useNavigation
 import { Card, Button, Title } from 'react-native-paper';
+import {IconButton} from "react-native-paper"; // Import IconButton from React Native Paper
+// import {IconButton} from "react-native-paper"; // Import IconButton from React Native Paper
 
 // Sample data for vehicles
 const bookingData = [
@@ -16,9 +18,12 @@ export default function Booking() {
 
   // Function to render each vehicle item
   const renderVehicleItem = (item) => (
+    
     <Card key={item.id} style={{ marginBottom: 10,height:"30%"}}>
+      
       <Card.Content>
         <View style={{ flexDirection: 'row', alignItems: 'center'}}>
+       
           <Image 
             source={item.image} 
             style={{ height: 120, width: '40%', borderRadius: 8 }} 
@@ -77,11 +82,20 @@ export default function Booking() {
   return (
     <View style={{ flex: 1 }}>
       <View style={{ height: '30%' }}>
+        
         <Image 
           style={{ height: '100%', width: '100%', resizeMode: 'cover' }} 
           source={require('../../../assets/icons/wellcome.png')} 
         />
+        
         <View style={{ position: 'absolute', top: '30%', marginHorizontal: 30 }}>
+        <IconButton
+            icon="arrow-left" 
+            size={30}
+            iconColor="green"
+            style={{left: -10,marginTop:-60}} 
+            onPress={() => navigation.navigate("BottomTabs")} // Navigate to Home on press
+          />
           <Text style={{ fontSize: 15, color: 'black' }}>Welcome to</Text>
           <Text style={{ fontSize: 28, fontWeight: "bold", color: 'green' }}>Book your</Text>
           <Text style={{ fontSize: 15, color: 'black' }}>hiking trip</Text>

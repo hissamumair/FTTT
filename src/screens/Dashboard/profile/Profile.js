@@ -2,6 +2,7 @@ import { Text, View, Image, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import Profileshare from './profileshare';
+import {IconButton} from "react-native-paper"; // Import IconButton from React Native Paper
 
 export default function Profile() {
   const navigation=useNavigation();
@@ -17,10 +18,16 @@ export default function Profile() {
           }} 
           source={require('../../../assets/icons/wellcome.png')} 
         />
-        
+        <IconButton
+            icon="arrow-left" 
+            size={30}
+            iconColor="green"
+            style={{left: 10,marginVertical:-160}} 
+            onPress={() => navigation.navigate("BottomTabs", { screen: "Home" })}
+            />
         <View style={{
          position: 'absolute', 
-         padding:40,
+         padding:60,
           //left: 10, 
           width: '50%', 
         }}>
@@ -58,9 +65,23 @@ export default function Profile() {
     </View>
     <View style={{justifyContent:"center",alignItems:"center",marginVertical:-30}}>
     <TouchableOpacity
-        style={{borderRadius:5,borderWidth:2,backgroundColor:"green",width:"94%",height:"20%",opacity:0.7}}>
-        <Text style={{fontSize:15,color:"white",textAlign:"center",fontWeight:"bold"}}>LogOut</Text>
-      </TouchableOpacity>
+  style={{
+    borderRadius: 5,
+    borderWidth: 2,
+    backgroundColor: "green",
+    width: "94%",
+    height: "20%",
+    opacity: 0.7,
+    justifyContent: "center",
+    alignItems: "center",
+  }}
+  onPress={() => navigation.navigate("Auth",{screen:"LoginScreen"})}
+>
+  <Text style={{ fontSize: 15, color: "white", textAlign: "center", fontWeight: "bold" }}>
+    Log Out
+  </Text>
+</TouchableOpacity>
+
       </View>
       <Text style={{ fontSize: 18, fontWeight: 'bold', marginBottom: 10 ,color:"black",marginTop:-25}}>Expedition History</Text>
 

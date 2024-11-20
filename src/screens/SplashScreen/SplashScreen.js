@@ -2,12 +2,17 @@ import { StyleSheet, View, Image } from 'react-native';
 import React from 'react';
 import { Button, Card, Text } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function SplashScreen() {
     const navigation = useNavigation();
 
-    const handleBookPress = () => {
-      navigation.navigate({name:"Auth", params:{screen:"Login"}});
+    const handleBookPress =async () => {
+      const user = await AsyncStorage.getItem("userId")
+      const navigateTo = user ? "BottomTabs" : "Auth"
+      navigation.navigate(navigateTo);
+      // navigation.navigate("HomeStack");
+      // navigation.navigate("BottomTabs");
     };
   
   return (

@@ -19,6 +19,10 @@ import Review from "./review";
 import Booking from "../../../components/Booking";
 import Chatscreen from "./chatscreen";
 import Startchat from "./startchat";
+// import { useNavigation } from "@react-navigation/native";
+import { useSelector } from "react-redux";
+import { selectExpeditions } from '../../../redux/reducers/features/expeditionsSlice'; // Adjust the path if necessary
+import Details from "./details";
 
 // Categories array
 const categories = [
@@ -66,14 +70,16 @@ const categories = [
   },
 ];
 
-export default function K2() {
+export default function K2({ route }) {
+  const { expedition } = route.params;
   const navigation = useNavigation();
+  const expeditions = useSelector(state=>state.expeditions); // Use selector to get expeditions
 
   const handleCardPress = categoryName => {
     console.log(`${categoryName} card pressed`);
     setSelectedTab(categoryName.replace(/ /g, ""));
   };
-  const [selectedTab, setSelectedTab] = useState("hiking");
+  const [selectedTab, setSelectedTab] = useState("");
 
   return (
     <ScrollView  style={{padding: 15}}>
@@ -85,47 +91,60 @@ export default function K2() {
             // height:70,
             justifyContent: "center",
             alignItems: "flex-start", // Align items to the left
-            paddingLeft: 20, // Add padding to the left for spacing
+            paddingLeft: 20, 
           }}
           resizeMode="cover">
           <IconButton
-            icon="arrow-left" // Use the arrow-left icon
+            icon="arrow-left" 
             size={30}
             iconColor="green"
-            style={{left: -10}} // Position the icon
-            onPress={() => navigation.navigate("Home")} // Navigate to Home on press
+            style={{left: -10}} 
+            onPress={() => navigation.navigate("BottomTabs")} // Navigate to Home on press
           />
 
-          <Text style={{color: "green", fontSize: 36, fontWeight: "bold"}}>
-            K2
+          <Text style={{color: "green", fontSize: 30, fontWeight: "bold"}}>
+           {expedition?.name}
           </Text>
           <Text style={{color: "black", fontSize: 18, fontWeight: "bold"}}>
             Categories
           </Text>
+          <Text style={{color: "black", fontSize: 20, fontWeight: "bold"}}>
+           {expedition?.price}
+          </Text>
+          {/* <Text style={{color: "black", fontSize: 14, fontWeight: "bold"}}>
+           Rs 75000
+          </Text> */}
 
-          <TouchableOpacity
-            style={{
-              position: "absolute", // Use absolute positioning
-              right: 20, // Move towards the right
-              bottom: 20, // Move towards the bottom
-              backgroundColor: "green",
-              paddingVertical: 10,
-              paddingHorizontal: 20,
-              borderRadius: 5,
-              width: "40%", // Adjust width for a better appearance
-            }}
-            onPress={() => console.log("Book Me pressed")} // Add navigation or functionality here
-          >
-            <Text
-              style={{
-                color: "white",
-                fontSize: 14,
-                fontWeight: "bold",
-                textAlign: "center",
-              }}>
-              Book
-            </Text>
-          </TouchableOpacity>
+     <View style={{
+      flex: 1,
+      width: '30%'
+    }}>
+      <TouchableOpacity
+        style={{
+          backgroundColor: "green",
+          borderRadius: 5,
+          paddingVertical: 10,
+          paddingHorizontal: 20,
+         // position: 'absolute',
+          right: -236,
+          top: -16
+        }}
+        // onPress={() => navigation.navigate("Bookreg")}
+        onPress={() => navigation.navigate("Bookreg", { expedition })}
+
+      >
+        <Text
+          style={{
+            color: "white",
+            fontSize: 14,
+            fontWeight: "bold",
+            textAlign: "center"
+          }}
+        >
+          Book Now
+        </Text>
+      </TouchableOpacity>
+    </View>
         </ImageBackground>
       </View>
 
@@ -173,20 +192,16 @@ export default function K2() {
       </ScrollView>
 
       <View style={{flex: 1}}>
-        {selectedTab == "hiking" && <Hickingpoint />}
-        {selectedTab == "camping" && <Campingpoint />}
-        {selectedTab == "gadget" && <Gadget />}
-        {selectedTab == "safety" && <Safety />}
-        {selectedTab == "weather" && <Weather/>}
-        {selectedTab == "review" && <Review/>}
-        {selectedTab == "booking" && <Booking/>}
-        {selectedTab == "chatscreen" && <Chatscreen/>}
-        {selectedTab == "Startchat" && <Startchat/>}
-
-
-
-
-
+        {selectedTab=="" && <Details expedition={expedition} />}
+        {selectedTab == "hiking" && <Hickingpoint expeditionId={expedition?._id} />}
+        {selectedTab == "camping" && <Campingpoint expeditionId={expedition?._id} />}
+        {selectedTab == "gadget" && <Gadget expeditionId={expedition?._id}/>}
+        {selectedTab == "safety" && <Safety expeditionId={expedition?._id}/>}
+        {selectedTab == "weather" && <Weather expeditionId={expedition?._id}/>}
+        {selectedTab == "review" && <Review expeditionId={expedition?._id}/>}
+        {selectedTab == "booking" && <Booking expeditionId={expedition?._id}/>}
+        {selectedTab == "chatscreen" && <Chatscreen expeditionId={expedition?._id}/>}
+        {selectedTab == "Startchat" && <Startchat expeditionId={expedition?._id}/>}
       </View>
     </ScrollView>
   );

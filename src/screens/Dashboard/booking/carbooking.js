@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, Image, TouchableOpacity, ScrollView, Dimensions, TextInput } from 'react-native';
 import { useNavigation } from '@react-navigation/native'; 
 import { Card, Title } from 'react-native-paper';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons'; 
+import { useGetAllCarBookingsForUserQuery } from '../../../redux/reducers/carbooking /carbookingThunk';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const { width } = Dimensions.get('window');
 
@@ -18,6 +20,19 @@ export default function Booking() {
   const handleBackPress = () => {
     navigation.goBack("Transportbooking"); 
   };
+  const [userId,setUserId] = useState("")
+  const {data, error} = useGetAllCarBookingsForUserQuery(userId, {skip:!userId});
+  console.log("data",data,error)
+  useEffect(()=>{
+
+    const getUserDetail = async()=>{
+      const localUser = await AsyncStorage.getItem("userId")
+      console.log("asdfads", localUser)
+      setUserId(localUser)
+    }
+    getUserDetail()
+  },[])
+
   // State for text inputs
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');

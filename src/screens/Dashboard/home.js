@@ -8,17 +8,11 @@ import {
 } from "react-native";
 import React, {useState} from "react";
 import {useNavigation} from "@react-navigation/native";
-import {Avatar, IconButton, Searchbar} from "react-native-paper";
+import {ActivityIndicator, IconButton, Searchbar} from "react-native-paper";
 import {TouchableOpacity} from "react-native";
-import Menuscreen from "../menuscreen";
-// import { IconButton } from 'react-native-paper';
-import { MaterialCommunityIcons } from 'react-native-vector-icons'; // Import the icons
-
+import {useGetAllPlacesQuery} from "../../redux/reducers/places/placeThunk";
 // import TabNavigator from "../../navigation/TabNavigator";
-// import { Screen } from "react-native-screens";
-// import Drawer from "../../navigation/Drawer";
 
-// Get screen dimensions
 const {width, height} = Dimensions.get("window");
 
 export default function Home() {
@@ -29,56 +23,21 @@ export default function Home() {
     console.log("Searching for:", searchQuery);
   };
 
-  const expeditions = [
-    {
-      id: "1",
-      title: "K2",
-      description:
-        "K2, the second-highest mountain in the world, towers at 8,611 meters (28,251 feet)..",
-      price: "PKR 15,000",
-      source: require("../../assets/icons/k2.png"),
-    },
-    {
-      id: "2",
-      title: "Karakorum",
-      description: "Karakoram is a mountain range in Pakistan..",
-      price: "PKR 15,000",
-      source: require("../../assets/icons/parbat.png"),
-    },
-    {
-      id: "3",
-      title: "K2",
-      description:
-        "K2, the second-highest mountain in the world, towers at 8,611 meters (28,251 feet)..",
-      price: "PKR 15,000",
-      source: require("../../assets/icons/parbat.png"),
-    },
-    {
-      id: "4",
-      title: "Karakorum",
-      price: "PKR 15,000",
-      source: require("../../assets/icons/k2.png"),
-    },
-    {
-      id: "5",
-      title: "K2",
-      price: "PKR 15,000",
-      source: require("../../assets/icons/parbat.png"),
-    },
-  ];
-
   const renderExpeditionItem = item => (
     <View
       style={{position: "relative", marginLeft: 10, marginBottom: 15}}
-      key={item.id}>
+      key={item?._id}>
       <TouchableOpacity
         onPress={() => {
-          if (item.title === "K2") {
-            navigation.navigate("K2");
-          }
+          // Assuming you have navigation set up for each place
+          navigation.navigate(item.title); // Navigate using the title to the corresponding screen
         }}>
         <Image
-          source={item.source}
+          source={
+            item.image
+              ? {uri: item.image}
+              : require("../../assets/icons/rakaposhi.jpg")
+          }
           style={{
             borderColor: "white",
             borderWidth: 2,
@@ -107,7 +66,7 @@ export default function Home() {
             textAlign: "center",
             marginBottom: 4,
           }}>
-          {item.title}
+          {item.name}
         </Text>
         {item.description && (
           <View
@@ -138,9 +97,9 @@ export default function Home() {
         </View>
         <TouchableOpacity
           onPress={() =>
-            navigation.navigate("HomeStack", {
-              screen: "K2",
-              params: {screen: "K2"},
+            navigation.navigate({
+              name: "HomeStack",
+              params: {screen: "K2", params: {expedition: item}},
             })
           }
           style={{
@@ -157,51 +116,45 @@ export default function Home() {
     </View>
   );
 
+  const {data, isLoading} = useGetAllPlacesQuery();
+
   return (
     <ScrollView style={{flex: 1, padding: 10}}>
       <View style={{width: "110%", height: "30%"}}>
-      <IconButton
-  icon="settings" // Correct icon name
-  size={20}
-  onPress={() => navigation.navigate("HomeStack", {
-    screen: "Menuscreen", // Ensure the screen name matches exactly
-    params: { screen: "Menuscreen" } // Optional if you don't have nested navigation
-  })}
-/>
-
-        <ImageBackground
-          source={require("../../assets/icons/wellcome.png")}
-          style={{
-            flex: 1,
-            marginTop: -20,
-            justifyContent: "center",
-            paddingHorizontal: 20,
-          }}
-          resizeMode="cover">
-          <Text
+        <View style={{justifyContent: "center", width: "100%", height: "100%"}}>
+          <ImageBackground
+            source={require("../../assets/icons/wellcome.png")}
             style={{
-              color: "black",
-              fontSize: 18,
-            }}>
-            Welcome to,
-          </Text>
-          <Text
-            style={{
-              color: "green",
-              fontSize: 30,
-              fontWeight: "bold",
-            }}>
-            Expedition
-          </Text>
-          <Text
-            style={{
-              color: "green",
-              fontSize: 20,
-              fontWeight: "bold",
-            }}>
-            Management System
-          </Text>
-        </ImageBackground>
+              flex: 1,
+              justifyContent: "center",
+              paddingHorizontal: 20,
+            }}
+            resizeMode="cover">
+            <Text
+              style={{
+                color: "black",
+                fontSize: 18,
+              }}>
+              Welcome to,
+            </Text>
+            <Text
+              style={{
+                color: "green",
+                fontSize: 30,
+                fontWeight: "bold",
+              }}>
+              Expedition
+            </Text>
+            <Text
+              style={{
+                color: "green",
+                fontSize: 20,
+                fontWeight: "bold",
+              }}>
+              Management System
+            </Text>
+          </ImageBackground>
+        </View>
       </View>
 
       <View
@@ -235,28 +188,32 @@ export default function Home() {
             position: "absolute",
             right: 10,
             marginTop: 10,
-            color: "red", // Set icon color to green
+            color: "red",
           }}
         />
       </View>
 
-      <View>
-        <Text
-          style={{
-            fontSize: 15,
-            color: "black",
-            fontWeight: "bold",
-            margin: 10,
-          }}>
-          Most Popular Places
-        </Text>
-        <ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          style={{marginTop: 10}}>
-          {expeditions.map(item => renderExpeditionItem(item))}
-        </ScrollView>
-      </View>
+      {isLoading ? (
+        <ActivityIndicator />
+      ) : (
+        <View>
+          <Text
+            style={{
+              fontSize: 15,
+              color: "black",
+              fontWeight: "bold",
+              margin: 10,
+            }}>
+            Most Popular Places
+          </Text>
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            style={{marginTop: 10}}>
+            {data?.map(renderExpeditionItem)}
+          </ScrollView>
+        </View>
+      )}
 
       <View
         style={{
@@ -274,7 +231,7 @@ export default function Home() {
           }}
         />
       </View>
-      {/* <TabNavigator /> */}
+      {/* <TabNavigator />  */}
     </ScrollView>
   );
 }

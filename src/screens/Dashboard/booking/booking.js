@@ -22,7 +22,7 @@ export default function Booking() {
   const {data, error} = useGetAllBookingsForUserQuery(userId, {skip: !userId});
 
   const [refreshing, setRefreshing] = useState(false);
-  console.log("object",userId,data,error)
+
   useEffect(() => {
     const fun = async () => {
       const id = await AsyncStorage.getItem("userId");

@@ -50,7 +50,7 @@ export default function Booking() {
           source={require("../../../assets/icons/wellcome.png")}
         />
         <View style={{position: "absolute", top: "30%", marginHorizontal: 30}}>
-          <Text style={{fontSize: 15, color: "black"}}>Welcome to</Text>
+          {/* <Text style={{fontSize: 15, color: "black"}}>Welcome to</Text> */}
           <Text style={{fontSize: 28, fontWeight: "bold", color: "green"}}>
             Book your
           </Text>

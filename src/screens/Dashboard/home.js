@@ -19,13 +19,14 @@ const {width, height} = Dimensions.get("window");
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10,
+    padding: 0,
   },
   welcomeContainer: {
-    width: "110%",
-    height: "30%",
+    //width: "100%",
+    height: "20%",
   },
   welcomeBackground: {
+    //width:"120%",
     flex: 1,
     justifyContent: "center",
     paddingHorizontal: 20,
@@ -47,13 +48,13 @@ const styles = StyleSheet.create({
   searchContainer: {
     flexDirection: "row",
     alignItems: "center",
-    marginTop: 20,
+    marginTop: 10,
     justifyContent: "space-between",
   },
   searchBar: {
     backgroundColor: "rgba(30, 30, 30, 0.2)",
     borderRadius: 10,
-    flex: 1,
+    margin:10,
   },
   searchInput: {
     color: "#000",

@@ -233,7 +233,7 @@ ${latitude === 0 && longitude === 0 ? "⚠️ Fallback/Placeholder Location" : "
           }}>
           <Text style={{fontSize: 15, color: "black"}}>Welcome to</Text>
           <Text style={{fontSize: 25, fontWeight: "bold", color: "green"}}>
-            My Profile
+          Profile
           </Text>
         </View>
       </View>

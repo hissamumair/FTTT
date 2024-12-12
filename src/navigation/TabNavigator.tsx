@@ -9,7 +9,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 import Booking from '../screens/Dashboard/booking/booking';
 import Home from '../screens/Dashboard/home';
-import Search from '../components/Search';
+// import Search from '../components/Search';
 import { CommonActions } from '@react-navigation/native';
 import Profile from '../screens/Dashboard/profile/Profile';
 import Currency from '../screens/Dashboard/currency';

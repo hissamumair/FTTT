@@ -1,87 +1,133 @@
-import { View, Image, TextInput } from 'react-native';
-import React, { useState } from 'react';
-import { Card, Text } from 'react-native-paper';
-import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
+import {View, Image, TextInput} from "react-native";
+import React, {useState} from "react";
+import {Card, Text} from "react-native-paper";
+import {ScrollView, TouchableOpacity} from "react-native-gesture-handler";
+import {useGetReviewsbyPlaceIdQuery} from "../../../redux/reducers/reviews/reviewsThunk";
+import moment from "moment";
+import StarRating from "../../../components/StarRating";
 
-export default function Review() {
-  const [comment, setComment] = useState('');
+export default function Review({expeditionId}) {
+  const {
+    data: Reviewdata,
+    isLoading,
+    error,
+  } = useGetReviewsbyPlaceIdQuery(expeditionId);
+  console.log("data", Reviewdata, error);
+  const [comment, setComment] = useState("");
 
   const handlePostComment = () => {
     // Handle posting the comment
     console.log(comment);
     // Clear the comment input after posting
-    setComment('');
+    setComment("");
   };
 
   return (
     <ScrollView>
-      <View style={{ justifyContent: 'center', flex: 1, padding: 10 }}>
-        <Text style={{ fontWeight: 'bold', fontSize: 12 }}>Comments and Review</Text>
-        <Card style={{ justifyContent: 'center', marginTop: 20, padding: 10 }}>
-          <View style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
-            <Image 
-              source={require('../../../assets/icons/profile2.png')}
-              style={{ width: 40, height: 40, borderRadius: 20, marginRight: 10 }}
+      <View style={{justifyContent: "center", flex: 1, padding: 10}}>
+        <Text style={{fontWeight: "bold", fontSize: 12}}>
+          Comments and Review
+        </Text>
+       
+       {Reviewdata?.map((review,index)=>
+        <Card key={index} style={{justifyContent: "center", marginTop: 20, padding: 10}}>
+          <View style={{flexDirection: "row", alignItems: "flex-start"}}>
+            <Image
+              source={{
+                uri: review?.image,
+              }} // Your image URL here
+              style={{width: 40, height: 40, borderRadius: 20, marginRight: 10}}
             />
-            <View style={{ flex: 1 }}>
-              <Text style={{ fontWeight: 'bold', fontSize: 14 }}>Ed Viesturs (American Mountaineer):</Text>
-              <Text style={{ fontSize: 12, marginVertical: 5 }}>
+            <View style={{flex: 1}}>
+              <Text style={{fontWeight: "bold", fontSize: 14}}>
+                {review?.name}
+              </Text>
+
+              <Text style={{fontSize: 12, marginVertical: 5}}>
+                {review?.title}{" "}
+              </Text>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  marginTop: 5,
+                }}>
+                  <StarRating rating={review?.rating} />
+                <Text style={{fontSize: 10, color: "gray"}}>
+                  {moment(review?.createdAt).fromNow()}
+                </Text>
+              </View>
+            </View>
+          </View>
+        </Card>
+      )}
+
+        {/* <Card style={{justifyContent: "center", marginTop: 20, padding: 10}}>
+          <View style={{flexDirection: "row", alignItems: "flex-start"}}>
+            <Image
+              source={{uri:Reviewdata.image}}
+              style={{width: 40, height: 40, borderRadius: 20, marginRight: 10}}
+            />
+            <View style={{flex: 1}}>
+              <Text style={{fontWeight: "bold", fontSize: 14}}>
+                Reinhold (Legendary Italian Climber):
+              </Text>
+              <Text style={{fontSize: 12, marginVertical: 5}}>
                 This is a sample comment content. The weather is great!
               </Text>
-              <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 5 }}>
-                <Text style={{ fontSize: 12 }}>⭐⭐⭐⭐⭐</Text>
-                <Text style={{ fontSize: 10, color: 'gray' }}>5 mins ago</Text>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  marginTop: 5,
+                }}>
+                <Text style={{fontSize: 12}}>⭐⭐⭐⭐⭐</Text>
+                <Text style={{fontSize: 10, color: "gray"}}>5 mins ago</Text>
               </View>
             </View>
           </View>
         </Card>
 
-        <Card style={{ justifyContent: 'center', marginTop: 20, padding: 10 }}>
-          <View style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
-            <Image 
-              source={require('../../../assets/icons/profilepic.png')}
-              style={{ width: 40, height: 40, borderRadius: 20, marginRight: 10 }}
+        <Card style={{justifyContent: "center", marginTop: 20, padding: 10}}>
+          <View style={{flexDirection: "row", alignItems: "flex-start"}}>
+            <Image
+              source={require("../../../assets/icons/profile2.png")}
+              style={{width: 40, height: 40, borderRadius: 20, marginRight: 10}}
             />
-            <View style={{ flex: 1 }}>
-              <Text style={{ fontWeight: 'bold', fontSize: 14 }}>Reinhold (Legendary Italian Climber):</Text>
-              <Text style={{ fontSize: 12, marginVertical: 5 }}>
+            <View style={{flex: 1}}>
+              <Text style={{fontWeight: "bold", fontSize: 14}}>
+                Nirmal Purja (Nepalese Mountaineer, First Winter Ascent)
+              </Text>
+              <Text style={{fontSize: 12, marginVertical: 5}}>
                 This is a sample comment content. The weather is great!
               </Text>
-              <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 5 }}>
-                <Text style={{ fontSize: 12 }}>⭐⭐⭐⭐⭐</Text>
-                <Text style={{ fontSize: 10, color: 'gray' }}>5 mins ago</Text>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  marginTop: 5,
+                }}>
+                <Text style={{fontSize: 12}}>⭐⭐⭐⭐⭐</Text>
+                <Text style={{fontSize: 10, color: "gray"}}>5 mins ago</Text>
               </View>
             </View>
           </View>
-        </Card>
+        </Card> */}
 
-        <Card style={{ justifyContent: 'center', marginTop: 20, padding: 10 }}>
-          <View style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
-            <Image 
-              source={require('../../../assets/icons/profile2.png')}
-              style={{ width: 40, height: 40, borderRadius: 20, marginRight: 10 }}
-            />
-            <View style={{ flex: 1 }}>
-              <Text style={{ fontWeight: 'bold', fontSize: 14 }}>Nirmal Purja (Nepalese Mountaineer, First Winter Ascent)</Text>
-              <Text style={{ fontSize: 12, marginVertical: 5 }}>
-                This is a sample comment content. The weather is great!
-              </Text>
-              <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 5 }}>
-                <Text style={{ fontSize: 12 }}>⭐⭐⭐⭐⭐</Text>
-                <Text style={{ fontSize: 10, color: 'gray' }}>5 mins ago</Text>
-              </View>
-            </View>
-          </View>
-        </Card>
-
-        <View style={{ marginTop: 60 }}>
-          <Text style={{ fontWeight: 'bold', fontSize: 12 }}>Post a Comment:</Text>
-          <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 10 }}>
+        <View style={{marginTop: 60}}>
+          <Text style={{fontWeight: "bold", fontSize: 12}}>
+            Post a Comment:
+          </Text>
+          <View
+            style={{flexDirection: "row", alignItems: "center", marginTop: 10}}>
             <TextInput
               style={{
                 flex: 1,
                 height: 40,
-                borderColor: 'gray',
+                borderColor: "gray",
                 borderWidth: 1,
                 borderRadius: 5,
                 paddingHorizontal: 10,
@@ -93,7 +139,7 @@ export default function Review() {
             <TouchableOpacity
               onPress={handlePostComment}
               style={{
-                backgroundColor: '#007BFF',
+                backgroundColor: "#007BFF",
                 borderRadius: 5,
                 paddingVertical: 10,
                 paddingHorizontal: 15,
@@ -102,7 +148,7 @@ export default function Review() {
               }}
               disabled={!comment} // Disable button if comment is empty
             >
-              <Text style={{ color: 'white', textAlign: 'center' }}>Post</Text>
+              <Text style={{color: "white", textAlign: "center"}}>Post</Text>
             </TouchableOpacity>
           </View>
         </View>

@@ -20,8 +20,8 @@ import Booking from "../../../components/Booking";
 import Chatscreen from "./chatscreen";
 import Startchat from "./startchat";
 // import { useNavigation } from "@react-navigation/native";
-import { useSelector } from "react-redux";
-import { selectExpeditions } from '../../../redux/reducers/features/expeditionsSlice'; // Adjust the path if necessary
+import {useSelector} from "react-redux";
+import {selectExpeditions} from "../../../redux/reducers/features/expeditionsSlice"; // Adjust the path if necessary
 import Details from "./details";
 
 // Categories array
@@ -70,10 +70,10 @@ const categories = [
   },
 ];
 
-export default function K2({ route }) {
-  const { expedition } = route.params;
+export default function K2({route}) {
+  const {expedition} = route.params;
   const navigation = useNavigation();
-  const expeditions = useSelector(state=>state.expeditions); // Use selector to get expeditions
+  const expeditions = useSelector(state => state.expeditions); // Use selector to get expeditions
 
   const handleCardPress = categoryName => {
     console.log(`${categoryName} card pressed`);
@@ -82,76 +82,76 @@ export default function K2({ route }) {
   const [selectedTab, setSelectedTab] = useState("");
 
   return (
-    <ScrollView  style={{padding: 15}}>
-      <View style={{width: "110%"}}>
-        <ImageBackground
-          source={require("../../../assets/icons/wellcome.png")}
-          style={{
-            flex: 1,
-            // height:70,
-            justifyContent: "center",
-            alignItems: "flex-start", // Align items to the left
-            paddingLeft: 20, 
-          }}
-          resizeMode="cover">
-          <IconButton
-            icon="arrow-left" 
-            size={30}
-            iconColor="green"
-            style={{left: -10}} 
-            onPress={() => navigation.navigate("BottomTabs")} // Navigate to Home on press
-          />
+    <ScrollView style={{flex: 1, padding: 0}}>
+      {/* <View style={{width: "100%",padding:0}}> */}
+      <ImageBackground
+        source={require("../../../assets/icons/wellcome.png")}
+        style={{
+          flex: 1,
+          width: "100%",
+          justifyContent: "center",
+        }}
+        resizeMode="cover">
+        <View style={{paddingHorizontal:"5%"}}>
 
-          <Text style={{color: "green", fontSize: 30, fontWeight: "bold"}}>
-           {expedition?.name}
-          </Text>
-          <Text style={{color: "black", fontSize: 18, fontWeight: "bold"}}>
-            Categories
-          </Text>
-          <Text style={{color: "black", fontSize: 20, fontWeight: "bold"}}>
-           {expedition?.price}
-          </Text>
-          {/* <Text style={{color: "black", fontSize: 14, fontWeight: "bold"}}>
+        <IconButton
+          icon="arrow-left"
+          size={30}
+          iconColor="green"
+          style={{left: -10}}
+          onPress={() => navigation.navigate("BottomTabs")} // Navigate to Home on press
+        />
+
+        <Text style={{color: "green", fontSize: 30, fontWeight: "bold"}}>
+          {expedition?.name}
+        </Text>
+        <Text style={{color: "black", fontSize: 18, fontWeight: "bold"}}>
+          Categories
+        </Text>
+        <Text style={{color: "black", fontSize: 20, fontWeight: "bold"}}>
+          {expedition?.price}
+        </Text>
+        {/* <Text style={{color: "black", fontSize: 14, fontWeight: "bold"}}>
            Rs 75000
           </Text> */}
 
-     <View style={{
-      flex: 1,
-      width: '30%'
-    }}>
-      <TouchableOpacity
-        style={{
-          backgroundColor: "green",
-          borderRadius: 5,
-          paddingVertical: 10,
-          paddingHorizontal: 20,
-         // position: 'absolute',
-          right: -236,
-          top: -16
-        }}
-        // onPress={() => navigation.navigate("Bookreg")}
-        onPress={() => navigation.navigate("Bookreg", { expedition })}
-
-      >
-        <Text
+        <View
           style={{
-            color: "white",
-            fontSize: 14,
-            fontWeight: "bold",
-            textAlign: "center"
-          }}
-        >
-          Book Now
-        </Text>
-      </TouchableOpacity>
-    </View>
-        </ImageBackground>
-      </View>
+            flex: 1,
+            width: "30%",
+          }}>
+          <TouchableOpacity
+            style={{
+              backgroundColor: "green",
+              borderRadius: 5,
+              paddingVertical: 10,
+              paddingHorizontal: 20,
+              // position: 'absolute',
+              right: -236,
+              top: -16,
+            }}
+            // onPress={() => navigation.navigate("Bookreg")}
+            onPress={() => navigation.navigate("Bookreg", {expedition})}>
+            <Text
+              style={{
+                color: "white",
+                fontSize: 14,
+                fontWeight: "bold",
+                textAlign: "center",
+              }}>
+              Book Now
+            </Text>
+          </TouchableOpacity>
+        </View>
+        </View>
+
+      </ImageBackground>
+      {/* </View> */}
 
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false} // Hide horizontal scrollbar
-        contentContainerStyle={{paddingVertical: 10}} // Padding for the content
+        contentContainerStyle={{padding: 10}} // Padding for the content
       >
         {categories.map(category => (
           <TouchableOpacity
@@ -191,17 +191,25 @@ export default function K2({ route }) {
         ))}
       </ScrollView>
 
-      <View style={{flex: 1}}>
-        {selectedTab=="" && <Details expedition={expedition} />}
-        {selectedTab == "hiking" && <Hickingpoint expeditionId={expedition?._id} />}
-        {selectedTab == "camping" && <Campingpoint expeditionId={expedition?._id} />}
-        {selectedTab == "gadget" && <Gadget expeditionId={expedition?._id}/>}
-        {selectedTab == "safety" && <Safety expeditionId={expedition?._id}/>}
-        {selectedTab == "weather" && <Weather expeditionId={expedition?._id}/>}
-        {selectedTab == "review" && <Review expeditionId={expedition?._id}/>}
-        {selectedTab == "booking" && <Booking expeditionId={expedition?._id}/>}
-        {selectedTab == "chatscreen" && <Chatscreen expeditionId={expedition?._id}/>}
-        {selectedTab == "Startchat" && <Startchat expeditionId={expedition?._id}/>}
+      <View style={{flex: 1, paddingHorizontal: "4%"}}>
+        {selectedTab == "" && <Details expedition={expedition} />}
+        {selectedTab == "hiking" && (
+          <Hickingpoint expeditionId={expedition?._id} />
+        )}
+        {selectedTab == "camping" && (
+          <Campingpoint expeditionId={expedition?._id} />
+        )}
+        {selectedTab == "gadget" && <Gadget expeditionId={expedition?._id} />}
+        {selectedTab == "safety" && <Safety expeditionId={expedition?._id} />}
+        {selectedTab == "weather" && <Weather expeditionId={expedition?._id} />}
+        {selectedTab == "review" && <Review expeditionId={expedition?._id} />}
+        {selectedTab == "booking" && <Booking expeditionId={expedition?._id} />}
+        {selectedTab == "chatscreen" && (
+          <Chatscreen expeditionId={expedition?._id} />
+        )}
+        {selectedTab == "Startchat" && (
+          <Startchat expeditionId={expedition?._id} />
+        )}
       </View>
     </ScrollView>
   );

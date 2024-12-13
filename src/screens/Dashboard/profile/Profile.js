@@ -215,7 +215,7 @@ ${latitude === 0 && longitude === 0 ? "⚠️ Fallback/Placeholder Location" : "
             width: "100%",
             resizeMode: "cover",
           }}
-          source={require("../../../assets/icons/wellcome.png")}
+          source={require("../../../assets/icons/profix.jpg")}
         />
         <IconButton
           icon="arrow-left"
@@ -224,18 +224,7 @@ ${latitude === 0 && longitude === 0 ? "⚠️ Fallback/Placeholder Location" : "
           style={{left: 10, marginVertical: -160}}
           onPress={() => navigation.navigate("BottomTabs", {screen: "Home"})}
         />
-        <View
-          style={{
-            position: "absolute",
-            padding: 60,
-            //left: 10,
-            width: "50%",
-          }}>
-          <Text style={{fontSize: 15, color: "black"}}>Welcome to</Text>
-          <Text style={{fontSize: 25, fontWeight: "bold", color: "green"}}>
-          Profile
-          </Text>
-        </View>
+       
       </View>
 
       <View

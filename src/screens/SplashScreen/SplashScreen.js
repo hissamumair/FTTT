@@ -86,6 +86,7 @@ const styles = StyleSheet.create({
   actions: {
     justifyContent: 'center', // Center the button in the actions area
     paddingVertical: 10,
+    height:80,
   },
   bookButton: {
     margin: 14, // Margin around the button

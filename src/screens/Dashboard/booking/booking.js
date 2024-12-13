@@ -47,15 +47,9 @@ export default function Booking() {
             width: "100%",
             resizeMode: "cover",
           }}
-          source={require("../../../assets/icons/wellcome.png")}
+          source={require("../../../assets/icons/hickes.jpg")}
         />
-        <View style={{position: "absolute", top: "30%", marginHorizontal: 30}}>
-          {/* <Text style={{fontSize: 15, color: "black"}}>Welcome to</Text> */}
-          <Text style={{fontSize: 28, fontWeight: "bold", color: "green"}}>
-            Book your
-          </Text>
-          <Text style={{fontSize: 15, color: "black"}}>hiking trip</Text>
-        </View>
+      
       </View>
 
       <View

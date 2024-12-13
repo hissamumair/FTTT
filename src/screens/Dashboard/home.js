@@ -22,11 +22,9 @@ const styles = StyleSheet.create({
     padding: 0,
   },
   welcomeContainer: {
-    //width: "100%",
-    height: "20%",
+    height: "25%",
   },
   welcomeBackground: {
-    //width:"120%",
     flex: 1,
     justifyContent: "center",
     paddingHorizontal: 20,
@@ -327,7 +325,6 @@ export default function Home() {
       mapRef.current?.animateCamera(cam, {duration: 300});
     });
   };
-
   const handleZoomOut = () => {
     mapRef.current?.getCamera().then(cam => {
       cam.zoom -= 1;
@@ -375,7 +372,6 @@ export default function Home() {
 
   return (
     <ScrollView style={styles.container}>
-      {/* Welcome Section */}
       <View style={styles.welcomeContainer}>
         <View style={{justifyContent: "center", width: "100%", height: "100%"}}>
           <ImageBackground
@@ -389,7 +385,6 @@ export default function Home() {
         </View>
       </View>
 
-      {/* Search Bar */}
       <View style={styles.searchContainer}>
         <Searchbar
           placeholder="Search location here"
@@ -400,7 +395,6 @@ export default function Home() {
         />
       </View>
 
-      {/* Places List */}
       {isLoading ? (
         <ActivityIndicator />
       ) : (
@@ -481,54 +475,7 @@ export default function Home() {
         </View>
       </View>
 
-      {/* Full Screen Map Modal */}
-      {/* <Modal
-        visible={isf}
-        animationType="slide"
-        onRequestClose={() => setIsFullScreenMapVisible(false)}>
-        <View style={styles.fullScreenModalContainer}>
-          <TouchableOpacity
-            style={styles.closeButton}
-            onPress={() => setIsFullScreenMapVisible(false)}>
-            <Icon source="close" size={30} color="black" />
-          </TouchableOpacity>
-          <MapView
-            ref={mapRef}
-            provider={PROVIDER_GOOGLE}
-            style={styles.map}
-            initialRegion={mapRegion || calculateMapRegion(data)}>
-            {filteredPlaces?.map(place => (
-              <Marker
-                key={place._id}
-                coordinate={{
-                  latitude: parseFloat(place.location.latitude) || 35.8989,
-                  longitude: parseFloat(place.location.longitude) || 71.3601,
-                }}
-                onPress={() => handleMarkerPress(place)}>
-                <View style={styles.markerContainer}>
-                  <Image
-                    source={
-                      place.image
-                        ? {uri: place.image}
-                        : require("../../assets/icons/rakaposhi.jpg")
-                    }
-                    style={styles.markerImage}
-                  />
-                </View>
-                <Callout tooltip>
-                  <View style={styles.callout}>
-                    <Text style={styles.calloutTitle}>{place.name}</Text>
-                    <Text style={styles.calloutDescription}>
-                      {place.description?.slice(0, 100)}
-                      {place.description?.length > 100 ? "..." : ""}
-                    </Text>
-                  </View>
-                </Callout>
-              </Marker>
-            ))}
-          </MapView>
-        </View>
-      </Modal> */}
+      
     </ScrollView>
   );
 }

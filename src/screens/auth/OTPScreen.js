@@ -119,7 +119,7 @@ import { useVerifyOTPMutation } from '../../redux/reducers/user/userThunk';
             {route?.params?.phoneNumber}
           </Text>
   
-          <CodeField
+          {/* <CodeField
             ref={ref}
             {...props}
             value={value}
@@ -134,7 +134,24 @@ import { useVerifyOTPMutation } from '../../redux/reducers/user/userThunk';
             keyboardType="number-pad"
             textContentType="oneTimeCode"
             renderCell={renderCell}
-          />
+          /> */}
+          
+          <CodeField
+  ref={ref}
+  {...props}
+  value={value}
+  onChangeText={setValue}
+  cellCount={CELL_COUNT}
+  rootStyle={{
+    height: CELL_SIZE,
+    marginTop: 30,
+    paddingHorizontal: 20,
+    justifyContent: 'center',
+  }}
+  keyboardType="number-pad"
+  textContentType="oneTimeCode"
+  renderCell={renderCell}
+/>
   
              <Button
               disabled={isDisabled}

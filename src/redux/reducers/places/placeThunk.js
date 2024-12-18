@@ -19,6 +19,11 @@ export const placeApi = createApi({
   endpoints: build => ({
     getAllPlaces: build.query({
       query: () => `/api/place`,
+
+      providesTags: ["Place"],
+    }),
+    getplaceById: build.query({
+      query: (expeditionId) => `/api/place/${expeditionId}`, // Use expeditionId here
       providesTags: ["Place"],
     }),
   }),
@@ -26,4 +31,5 @@ export const placeApi = createApi({
 
 export const {
   useGetAllPlacesQuery,
+  useGetplaceByIdQuery,
 } = placeApi;

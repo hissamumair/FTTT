@@ -18,6 +18,9 @@ import bookingReducer from "./reducers/booking/bookingReducer";
 import {bookingApi} from "./reducers/booking/bookingThunk";
 import carbookingReducer from "./reducers/carbooking /carbookingReducer";
 import {carbookingApi} from "./reducers/carbooking /carbookingThunk";
+import messageReducer from "./reducers/messages/messageReducer";
+import { messageApi } from "./reducers/messages/messageThunk";
+// import messageReducer, { MessageSlice } from "./reducers/messages/messageReducer";
 
 const store = configureStore({
   reducer: {
@@ -30,6 +33,8 @@ const store = configureStore({
     booking: bookingReducer,
     carCooking: carbookingReducer,
     Review: reviewsReducer,
+    Message: messageReducer,
+
 
     [userApi.reducerPath]: userApi.reducer,
     [placeApi.reducerPath]: placeApi.reducer,
@@ -40,6 +45,8 @@ const store = configureStore({
     [reviewApi.reducerPath]: reviewApi.reducer,
     [bookingApi.reducerPath]: bookingApi.reducer,
     [carbookingApi.reducerPath]: carbookingApi.reducer,
+    [messageApi.reducerPath]: messageApi.reducer,
+
   },
   middleware: getdefaultMiddleware =>
     getdefaultMiddleware({
@@ -54,6 +61,7 @@ const store = configureStore({
       gadgetApi.middleware,
       safetyApi.middleware,
       reviewApi.middleware,
+      messageApi.middleware,
     ]),
 });
 

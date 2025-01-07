@@ -1,86 +1,341 @@
-import React, { useState } from 'react';
-import { View, TextInput, TouchableOpacity, Text, FlatList } from 'react-native';
+
+// import React, { useState, useEffect } from 'react';
+// import { View, TextInput, TouchableOpacity, Text, FlatList, ActivityIndicator } from 'react-native';
+// import Icon from 'react-native-vector-icons/MaterialIcons';
+// import { useDispatch } from 'react-redux';
+// import { useGetMessagesQuery, useSendMessageMutation } from '../../../redux/reducers/messages/messageThunk';
+// import { adminId } from '../../../utils/senderDetail';
+// import AsyncStorage from '@react-native-async-storage/async-storage';
+
+// // Message Bubble Component
+// const MessageBubble = ({ message, isTraveler }) => (
+//   <View style={{ flexDirection: 'column', alignItems: isTraveler ? 'flex-start' : 'flex-end', padding: 10 }}>
+//     <Text style={{ fontWeight: 'bold', marginBottom: 5 }}>{isTraveler ? 'Traveler' : 'Admin'}</Text>
+//     <View style={{ backgroundColor: isTraveler ? '#4CAF50' : '#fff', borderColor: '#4CAF50', borderWidth: 1, borderRadius: 10, padding: 10, maxWidth: '75%' }}>
+//       <Text style={{ color: isTraveler ? '#fff' : '#4CAF50' }}>{message.text}</Text>
+//       <Text style={{ fontSize: 10, color: isTraveler ? '#E0E0E0' : '#666', marginTop: 5 }}>
+//         {new Date(message.timestamp).toLocaleTimeString()}
+//       </Text>
+//     </View>
+//   </View>
+// );
+
+// const ChatActions = ({ onPress, iconName, disabled = false }) => (
+//   <TouchableOpacity style={{ marginLeft: 10 }} onPress={onPress} disabled={disabled}>
+//     <Icon name={iconName} size={30} color={disabled ? '#A5D6A7' : '#4CAF50'} />
+//   </TouchableOpacity>
+// );
+
+// export default function StartChat({ groupId }) {
+//   const [message, setMessage] = useState('');
+//   const [isRecording, setIsRecording] = useState(false);
+//   const dispatch = useDispatch();
+
+//   const [userId, setUserId] = useState(null);
+
+//   useEffect(() => {
+//     const fun = async () => {
+//       const id = await AsyncStorage.getItem("userId");
+//       setUserId(id);
+//     };
+//     fun()
+//   }, []);
+
+//   const { data: chatHistory, isLoading, error, refetch } = useGetMessagesQuery({receiverId:adminId,senderId:userId});
+// console.log("object",chatHistory,error)
+//   const [sendMessage, { isLoading: isSending }] = useSendMessageMutation();
+
+
+
+//   const handleSendMessage = async () => {
+//     if (message.trim() === '' || isSending) return;
+
+//     try {
+//       await sendMessage({
+//         groupId,
+//         text: message,
+//         timestamp: new Date().toISOString(),
+//       });
+//       setMessage('');
+//     } catch (error) {
+//       console.error('Failed to send message:', error);
+//       // You might want to show an error toast here
+//     }
+//   };
+
+//   const renderMessage = ({ item }) => (
+//     <MessageBubble message={item} isTraveler={item.sender === 'traveler'} />
+//   );
+
+
+
+//   return (
+//     <View style={{ flex: 1, backgroundColor: '#F2F2F2' }}>
+//       {isLoading ? (
+//         <ActivityIndicator size="large" color="#4CAF50" style={{ flex: 1 }} />
+//       ) : (
+//         <FlatList
+//           data={chatHistory}
+//           renderItem={renderMessage}
+//           keyExtractor={(item) => item.id.toString()}
+//           style={{ flex: 1 }}
+//           inverted={true} 
+//           onRefresh={refetch}
+//           refreshing={isLoading}
+//         />
+//       )}
+
+//       <View style={{ flexDirection: 'row', alignItems: 'center', padding: 10, backgroundColor: '#fff', borderTopWidth: 1, borderColor: '#E0E0E0' }}>
+//         <TextInput
+//           value={message}
+//           onChangeText={setMessage}
+//           placeholder="Message here"
+//           style={{
+//             flex: 1,
+//             borderWidth: 1,
+//             borderColor: '#E0E0E0',
+//             borderRadius: 25,
+//             paddingHorizontal: 15,
+//             marginRight: 10,
+//           }}
+//           editable={!isSending}
+//         />
+
+//         <ChatActions onPress={handleSendMessage} iconName="send" disabled={isSending || message.trim() === ''} />
+//       </View>
+//     </View>
+//   );
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import React, { useState, useEffect } from 'react';
+// import { View, TextInput, TouchableOpacity, Text, FlatList, ActivityIndicator } from 'react-native';
+// import Icon from 'react-native-vector-icons/MaterialIcons';
+// import { useDispatch } from 'react-redux';
+// import { useGetMessagesQuery, useSendMessageMutation } from '../../../redux/reducers/messages/messageThunk';
+// import { adminId } from '../../../utils/senderDetail';
+// import AsyncStorage from '@react-native-async-storage/async-storage';
+
+// // Message Bubble Component
+// const MessageBubble = ({ message, isTraveler }) => (
+//   <View style={{ flexDirection: 'column', alignItems: isTraveler ? 'flex-start' : 'flex-end', padding: 10 }}>
+//     <Text style={{ fontWeight: 'bold', marginBottom: 5 }}>{isTraveler ? 'Traveler' : 'Admin'}</Text>
+//     <View style={{ backgroundColor: isTraveler ? '#4CAF50' : '#fff', borderColor: '#4CAF50', borderWidth: 1, borderRadius: 10, padding: 10, maxWidth: '75%' }}>
+//       <Text style={{ color: isTraveler ? '#fff' : '#4CAF50' }}>{message.text}</Text>
+//       <Text style={{ fontSize: 10, color: isTraveler ? '#E0E0E0' : '#666', marginTop: 5 }}>
+//         {new Date(message.timestamp).toLocaleTimeString()}
+//       </Text>
+//     </View>
+//   </View>
+// );
+
+// const ChatActions = ({ onPress, iconName, disabled = false }) => (
+//   <TouchableOpacity style={{ marginLeft: 10 }} onPress={onPress} disabled={disabled}>
+//     <Icon name={iconName} size={30} color={disabled ? '#A5D6A7' : '#4CAF50'} />
+//   </TouchableOpacity>
+// );
+
+// export default function StartChat({ groupId }) {
+//   const [message, setMessage] = useState('');
+//   const [isRecording, setIsRecording] = useState(false);
+//   const dispatch = useDispatch();
+
+//   const [userId, setUserId] = useState(null);
+
+//   useEffect(() => {
+//     const fun = async () => {
+//       const id = await AsyncStorage.getItem("userId");
+//       setUserId(id);
+//     };
+//     fun()
+//   }, []);
+
+//   const { data: chatHistory, isLoading, error, refetch } = useGetMessagesQuery({receiverId:adminId,senderId:userId});
+// console.log("object",chatHistory,error)
+//   const [sendMessage, { isLoading: isSending }] = useSendMessageMutation();
+
+
+
+//   const handleSendMessage = async () => {
+//     if (message.trim() === '' || isSending) return;
+
+//     try {
+//       await sendMessage({
+//         groupId,
+//         text: message,
+//         timestamp: new Date().toISOString(),
+//       });
+//       setMessage('');
+//     } catch (error) {
+//       console.error('Failed to send message:', error);
+//       // You might want to show an error toast here
+//     }
+//   };
+
+//   const renderMessage = ({ item }) => (
+//     <MessageBubble message={item} isTraveler={item.sender === 'traveler'} />
+//   );
+
+
+
+//   return (
+//     <View style={{ flex: 1, backgroundColor: '#F2F2F2' }}>
+//       {isLoading ? (
+//         <ActivityIndicator size="large" color="#4CAF50" style={{ flex: 1 }} />
+//       ) : (
+//         <FlatList
+//           data={chatHistory}
+//           renderItem={renderMessage}
+//           keyExtractor={(item) => item.id.toString()}
+//           style={{ flex: 1 }}
+//           inverted={true} 
+//           onRefresh={refetch}
+//           refreshing={isLoading}
+//         />
+//       )}
+
+//       <View style={{ flexDirection: 'row', alignItems: 'center', padding: 10, backgroundColor: '#fff', borderTopWidth: 1, borderColor: '#E0E0E0' }}>
+//         <TextInput
+//           value={message}
+//           onChangeText={setMessage}
+//           placeholder="Message here"
+//           style={{
+//             flex: 1,
+//             borderWidth: 1,
+//             borderColor: '#E0E0E0',
+//             borderRadius: 25,
+//             paddingHorizontal: 15,
+//             marginRight: 10,
+//           }}
+//           editable={!isSending}
+//         />
+
+//         <ChatActions onPress={handleSendMessage} iconName="send" disabled={isSending || message.trim() === ''} />
+//       </View>
+//     </View>
+//   );
+// }
+
+
+
+
+import React, { useState, useEffect } from 'react';
+import { View, TextInput, TouchableOpacity, Text, FlatList, ActivityIndicator } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { useDispatch } from 'react-redux';
+import { useGetMessagesQuery, useSendMessageMutation } from '../../../redux/reducers/messages/messageThunk';
+import { adminId } from '../../../utils/senderDetail';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export default function StartChat() {
+// Message Bubble Component
+const MessageBubble = ({ message, isSender }) => (
+  <View style={{ flexDirection: 'column', alignItems: isSender ? 'flex-end' : 'flex-start', padding: 10 }}>
+    <Text style={{ fontWeight: 'bold', marginBottom: 5 }}>{isSender ? 'client' : 'Admin'}</Text>
+    <View style={{ 
+      backgroundColor: isSender ? '#4CAF50' : '#fff', 
+      borderColor: '#4CAF50', 
+      borderWidth: 1, 
+      borderRadius: 10, 
+      padding: 10, 
+      maxWidth: '75%' 
+    }}>
+      <Text style={{ color: isSender ? '#fff' : '#4CAF50' }}>{message.message}</Text>
+      <Text style={{ fontSize: 10, color: isSender ? '#E0E0E0' : '#666', marginTop: 5 }}>
+        {new Date(message.createdAt).toLocaleTimeString()}
+      </Text>
+    </View>
+  </View>
+);
+
+const ChatActions = ({ onPress, iconName, disabled = false }) => (
+  <TouchableOpacity style={{ marginLeft: 10 }} onPress={onPress} disabled={disabled}>
+    <Icon name={iconName} size={30} color={disabled ? '#A5D6A7' : '#4CAF50'} />
+  </TouchableOpacity>
+);
+
+export default function StartChat({ groupId }) {
   const [message, setMessage] = useState('');
-  const [chatHistory, setChatHistory] = useState([
-    { sender: 'traveler', text: 'Hi I am Alex' },
-    { sender: 'admin', text: 'Hello Alex, how may I help you?' },
-    { sender: 'traveler', text: 'Hi I am Alex' },
-    { sender: 'admin', text: 'Hello Alex, how may I help you?' },
-  ]);
+  const dispatch = useDispatch();
+  const [userId, setUserId] = useState(null);
 
-  const sendMessage = () => {
-    if (message.trim() !== '') {
-      setChatHistory([...chatHistory, { sender: 'traveler', text: message }]);
+  useEffect(() => {
+    const getUserId = async () => {
+      const id = await AsyncStorage.getItem("userId");
+      setUserId(id);
+    };
+    getUserId();
+  }, []);
+
+  const { 
+    data: chatData, 
+    isLoading, 
+    error, 
+    refetch 
+  } = useGetMessagesQuery({
+    receiverId: adminId,
+    senderId: userId
+  });
+
+  const [sendMessage, { isLoading: isSending }] = useSendMessageMutation();
+
+  const handleSendMessage = async () => {
+    if (message.trim() === '' || isSending) return;
+
+    try {
+      await sendMessage({
+        receiverId: adminId,
+        senderId: userId,
+        message: message,
+      });
       setMessage('');
+      refetch(); // Refresh the messages after sending
+    } catch (error) {
+      console.error('Failed to send message:', error);
     }
   };
 
-  const handleVoiceCall = () => {
-    console.log('Voice call initiated');
-    // Implement voice call functionality here
-  };
-
-  const handleTextToSpeech = () => {
-    console.log('Text-to-speech initiated');
-    // Implement text-to-speech functionality here
-  };
-
-  const renderMessage = ({ item }) => {
-    const isTraveler = item.sender === 'traveler';
-    return (
-      <View
-        style={{
-          flexDirection: 'column',
-          alignItems: isTraveler ? 'flex-start' : 'flex-end',
-          padding: 10,
-        }}
-      >
-        {/* Sender Title */}
-        <Text style={{ fontWeight: 'bold', marginBottom: 5 }}>
-          {isTraveler ? 'Traveler' : 'Admin'}
-        </Text>
-
-        {/* Message Bubble */}
-        <View
-          style={{
-            backgroundColor: isTraveler ? '#4CAF50' : '#fff',
-            borderColor: '#4CAF50',
-            borderWidth: 1,
-            borderRadius: 10,
-            padding: 10,
-            maxWidth: '75%',
-          }}
-        >
-          <Text style={{ color: isTraveler ? '#fff' : '#4CAF50' }}>{item.text}</Text>
-        </View>
-      </View>
-    );
-  };
+  const renderMessage = ({ item }) => (
+    <MessageBubble 
+      message={item} 
+      isSender={item.sender._id === userId}
+    />
+  );
 
   return (
     <View style={{ flex: 1, backgroundColor: '#F2F2F2' }}>
-      {/* Chat history */}
-      <FlatList
-        data={chatHistory}
-        renderItem={renderMessage}
-        keyExtractor={(item, index) => index.toString()}
-        style={{ flex: 1 }}
-      />
+      {isLoading ? (
+        <ActivityIndicator size="large" color="#4CAF50" style={{ flex: 1 }} />
+      ) : (
+        <FlatList
+          data={chatData?.messages || []}
+          renderItem={renderMessage}
+          keyExtractor={(item) => item._id}
+          style={{ flex: 1 }}
+          inverted={true}
+          onRefresh={refetch}
+          refreshing={isLoading}
+        />
+      )}
 
-      {/* Message input and actions */}
-      <View
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          padding: 10,
-          backgroundColor: '#fff',
-          borderTopWidth: 1,
-          borderColor: '#E0E0E0',
-        }}
-      >
+      <View style={{ 
+        flexDirection: 'row', 
+        alignItems: 'center', 
+        padding: 10, 
+        backgroundColor: '#fff', 
+        borderTopWidth: 1, 
+        borderColor: '#E0E0E0' 
+      }}>
         <TextInput
           value={message}
           onChangeText={setMessage}
@@ -93,19 +348,14 @@ export default function StartChat() {
             paddingHorizontal: 15,
             marginRight: 10,
           }}
+          editable={!isSending}
         />
 
-        <TouchableOpacity onPress={sendMessage}>
-          <Icon name="send" size={30} color="#4CAF50" />
-        </TouchableOpacity>
-
-        <TouchableOpacity style={{ marginLeft: 10 }} onPress={handleVoiceCall}>
-          <Icon name="call" size={30} color="#4CAF50" />
-        </TouchableOpacity>
-
-        <TouchableOpacity style={{ marginLeft: 10 }} onPress={handleTextToSpeech}>
-          <Icon name="mic" size={30} color="#4CAF50" />
-        </TouchableOpacity>
+        <ChatActions 
+          onPress={handleSendMessage} 
+          iconName="send" 
+          disabled={isSending || message.trim() === ''} 
+        />
       </View>
     </View>
   );

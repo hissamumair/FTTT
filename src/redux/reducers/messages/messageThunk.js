@@ -19,7 +19,7 @@ export const messageApi = createApi({
     // Fetch all messages for a group (Update query path to match backend)
     getMessages: builder.query({
       query: ({ receiverId, senderId }) => `/api/chat/${receiverId}/${senderId}`, // Updated path
-      providesTags: (result, error, { senderId }) => [{ type: 'Message', id: senderId }],
+      // providesTags: (result, error, { senderId }) => [{ type: 'Message', id: senderId }],
     }),
 
     // Send a new message (Update query path to match backend)

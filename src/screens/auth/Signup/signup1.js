@@ -40,7 +40,8 @@ export default function Signup1() {
       if (response?.data?.message) {
         console.log("asdf",response.data)
         await AsyncStorage.setItem('userId', response.data?.user?._id);
-        navigation.navigate('BottomTabs');
+        await AsyncStorage.setItem('userEmail', response.data?.user?.email);
+        navigation.navigate('OTPVerificationScreen');
       }
       if(response.error?.data){
         Alert.alert(response.error?.data?.message)

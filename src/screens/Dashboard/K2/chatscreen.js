@@ -23,7 +23,7 @@ export default function Chatscreen() {
         }}
       >
         No chat available. Please click the button below to start a chat.
-      </Text>
+        </Text>
 
       <View style={{ flex: 1 ,marginBottom:150,}} /> 
 

@@ -334,7 +334,7 @@ export default function Signup1() {
             />
             {touched.email && errors.email && <Text style={{ color: 'red' }}>{errors.email}</Text>}
 
-            <TextInput
+            {/* <TextInput
               label="Password"
               value={values.password}
               onChangeText={handleChange('password')}
@@ -345,30 +345,55 @@ export default function Signup1() {
                 <TextInput.Icon
                   name={secureTextEntry ? 'eye-off' : 'eye'}
                   onPress={() => setSecureTextEntry(!secureTextEntry)}
+                  color="red"
+                  backgroundColor="gray"
+
+
                 />
               }
               style={{ marginBottom: 10 }}
               error={touched.password && errors.password}
             />
-            {touched.password && errors.password && <Text style={{ color: 'red' }}>{errors.password}</Text>}
+            {touched.password && errors.password && <Text style={{ color: 'red' }}>{errors.password}</Text>} */}
 
-            <TextInput
-              label="Confirm Password"
-              value={values.confirmPassword}
-              onChangeText={handleChange('confirmPassword')}
-              onBlur={handleBlur('confirmPassword')}
-              mode="outlined"
-              secureTextEntry={secureTextEntry}
-              right={
-                <TextInput.Icon
-                  name={secureTextEntry ? 'eye-off' : 'eye'}
-                  onPress={() => setSecureTextEntry(!secureTextEntry)}
-                />
-              }
-              style={{ marginBottom: 15 }}
-              error={touched.confirmPassword && errors.confirmPassword}
-            />
-            {touched.confirmPassword && errors.confirmPassword && <Text style={{ color: 'red' }}>{errors.confirmPassword}</Text>}
+
+<TextInput
+  label="Password"
+  value={values.password}
+  onChangeText={handleChange('password')}
+  onBlur={handleBlur('password')}
+  mode="outlined"
+  secureTextEntry={secureTextEntry}
+  right={
+    <TextInput.Icon
+      icon={secureTextEntry ? 'eye-off' : 'eye'}
+      onPress={() => setSecureTextEntry(!secureTextEntry)}
+      // Remove color and backgroundColor props
+      style={{ marginRight: 10 }}
+    />
+  }
+  style={{ marginBottom: 10 }}
+  error={touched.password && errors.password}
+/>
+<TextInput
+  label="Confirm Password"
+  value={values.confirmPassword}
+  onChangeText={handleChange('confirmPassword')}
+  onBlur={handleBlur('confirmPassword')}
+  mode="outlined"
+  secureTextEntry={secureTextEntry}
+  right={
+    <TextInput.Icon
+      icon={secureTextEntry ? 'eye-off' : 'eye'}
+      onPress={() => setSecureTextEntry(!secureTextEntry)}
+      // Remove color and backgroundColor props
+      style={{ marginRight: 10 }}
+    />
+  }
+  style={{ marginBottom: 15 }}
+  error={touched.confirmPassword && errors.confirmPassword}
+/>
+
 
             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -443,25 +468,7 @@ export default function Signup1() {
                 <Text style={{ fontSize: 16 }}>Google Account</Text>
               </TouchableOpacity>
 
-              <TouchableOpacity
-                onPress={() => console.log('Facebook Login')}
-                style={{
-                  width: '90%',
-                  height: 50,
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  borderWidth: 1,
-                  borderColor: '#ccc',
-                  borderRadius: 5,
-                }}
-              >
-                <Image
-                  source={require('../../../assets/icons/facebook.png')}
-                  style={{ width: 24, height: 24, marginRight: 10 }}
-                />
-                <Text style={{ fontSize: 16 }}>Facebook Account</Text>
-              </TouchableOpacity>
+              
             </View>
           </>
         )}

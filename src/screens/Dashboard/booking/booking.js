@@ -18,11 +18,11 @@ export default function Booking() {
   const navigation = useNavigation();
   const [selectedTab, setSelectedTab] = useState("Trip Booking");
   // const userId = "671149cb0d5d4d7afc1c1187";
-  const [userId, setUserId] = useState(null);
   const {data, error} = useGetAllBookingsForUserQuery(userId, {skip: !userId});
-
+  
   const [refreshing, setRefreshing] = useState(false);
-
+  
+  const [userId, setUserId] = useState(null);
   useEffect(() => {
     const fun = async () => {
       const id = await AsyncStorage.getItem("userId");

@@ -37,7 +37,7 @@ const ResetPasswordScreen = ({navigation, route}) => {
     resetPassword({resetToken:route?.params?.resetToken, password:values.password}).then((res)=>{
       console.log("object",res)
       if(res.data?.message==="Password has been reset successfully!"){
-        navigation.navigate('Home');
+        navigation.navigate('Login');
       }
     })
   };

@@ -17,16 +17,15 @@ import {
 import {adminId} from "../../../utils/senderDetail";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const MessageBubble = ({message, isSender,isClient}) => (
+const MessageBubble = ({message, isSender}) => (
   <View
     style={{
       flexDirection: "column",
       alignItems: isSender ? "flex-end" : "flex-start",
       padding: 10,
     }}>
-      {console.log("object",isSender,isClient)}
     <Text style={{fontWeight: "bold", marginBottom: 5}}>
-      {isSender ? "Client" : "Admin"}
+      {isSender ? "" : "Admin"}
     </Text>
     <View
       style={{
@@ -74,6 +73,8 @@ export default function StartChat({groupId}) {
     getUserId();
   }, []);
 
+
+
   const {
     data: chatData,
     isLoading,
@@ -84,15 +85,11 @@ export default function StartChat({groupId}) {
     {
       receiverId:adminId,
       senderId:userId
-      // receiverId: adminId,
-      // senderId: userId,
     },
     {
       skip: !userId, // Don't run the query until userId is loaded
     },
   );
-
-  console.log("object",userId);
 
   const [sendMessage, {isLoading: isSending}] = useSendMessageMutation();
 
@@ -100,11 +97,14 @@ export default function StartChat({groupId}) {
     if (message.trim() === "" || isSending) return;
 
     try {
-      await sendMessage({
-        receiverId: adminId,
-        senderId: userId,
+      const newMsg = {
+        receiver: adminId,
+        sender: userId,
         message: message,
-      });
+      }
+      await sendMessage(newMsg).then((res)=>{
+        console.log("send messa",res)
+      })
       setMessage("");
       refetch(); // Refresh the messages after sending
     } catch (error) {
@@ -112,19 +112,11 @@ export default function StartChat({groupId}) {
     }
   };
 
-  // useEffect hook to auto-refresh messages periodically
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      refetch(); // Fetch new messages every 5 seconds (or adjust interval as needed)
-    }, 5000);
-
-    return () => clearInterval(intervalId); // Cleanup on unmount
-  }, [refetch]);
-
   const renderMessage = ({item}) => (
-    <MessageBubble message={item} isSender={item.sender._id == userId} isClient={item.sender._id ==userId} />
+    <MessageBubble message={item} isSender={item.sender == userId}  />
   );
 
+  console.log("object",chatData)
   return (
     <View style={{flex: 1, backgroundColor: "#F2F2F2"}}>
       {isLoading ? (
@@ -140,8 +132,8 @@ export default function StartChat({groupId}) {
               <Text>Noo messages yet</Text>
             </View>
           )}
-          inverted={chatData?.messages ? true : false}
-          // inverted={true}
+          inverted={chatData?.messages?.length ? false : true}
+          // inverted={false}
           refreshControl={<RefreshControl refreshing={isFetching} onRefresh={refetch} />}
         />
       )}

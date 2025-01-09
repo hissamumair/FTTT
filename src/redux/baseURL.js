@@ -1,3 +1,3 @@
 
-export const baseURL = "https://expedition-mangemnt.onrender.com";
-// export const baseURL = "https://37ac-2407-d000-8-26a8-e0a4-c4d1-8cb6-3b2d.ngrok-free.app";
+// export const baseURL = "https://expedition-mangemnt.onrender.com";
+export const baseURL = "https://f25d-2407-d000-8-424a-892d-ebe5-4c71-d88d.ngrok-free.app"

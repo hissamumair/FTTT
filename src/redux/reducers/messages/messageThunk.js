@@ -24,10 +24,10 @@ export const messageApi = createApi({
 
     // Send a new message (Update query path to match backend)
     sendMessage: builder.mutation({
-      query: ({ groupId, text }) => ({
-        url: '/chat/send', // Updated path
+      query: (data) => ({
+        url: '/api/chat/send', // Updated path
         method: 'POST',
-        body: { groupId, text },
+        body: data,
       }),
       invalidatesTags: (result, error, { groupId }) => [{ type: 'Message', id: groupId }],
     }),

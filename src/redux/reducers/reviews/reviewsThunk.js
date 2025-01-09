@@ -16,6 +16,14 @@ export const reviewApi = createApi({
   }),
   tagTypes: ['Reviews'], 
   endpoints: (build) => ({
+    createReview: build.mutation({
+      query: (reviewData) => ({
+        url: '/api/reviews', 
+        method: 'POST',
+        body: reviewData, 
+      }),
+      invalidatesTags: ['Reviews'],
+    }),
     getAllreview: build.query({
       query: () => `/api/reviews`,
       providesTags: ["Reviews"], 
@@ -30,6 +38,7 @@ export const reviewApi = createApi({
 export const {
   useGetAllreviewQuery,
   // useGetSafetybyPlaceIdQuery,
+  useCreateReviewMutation,
   useGetReviewsbyPlaceIdQuery,
 
 } = reviewApi;

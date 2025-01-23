@@ -4,17 +4,13 @@ import {Card, Divider} from "react-native-paper";
 import {useDispatch, useSelector} from "react-redux";
 import {setGadgets} from "./../../../redux/reducers/features/gadgetSlice";
 import {useGetGadgetByPlaceIdQuery} from "../../../redux/reducers/gadget/gadgetThunk";
+import ImageComponent from "../../../components/image";
 export default function Gadget({expeditionId}) {
   const {data, isLoading, error} = useGetGadgetByPlaceIdQuery(expeditionId);
   console.log("data",data)
 
 
-  const images = [
-    require("../../../assets/icons/gadget1.png"),
-    require("../../../assets/icons/gadget2.png"),
-    require("../../../assets/icons/gadget1.png"),
-    require("../../../assets/icons/gadget2.png"),
-  ];
+  
   if (isLoading) {
     return <Text>Loading...</Text>; // Handle loading state
   }
@@ -64,9 +60,28 @@ export default function Gadget({expeditionId}) {
             ))}
           </View>
         ))}
-      </View>
 
-      <View
+
+        
+      </View>
+      
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+<ImageComponent/>
+      {/* <View
         style={{
           justifyContent: "center",
           justifyItem: "center",
@@ -94,8 +109,8 @@ export default function Gadget({expeditionId}) {
             ))}
           </View>
         </ScrollView>
-      </View>
-      <Card
+      </View> */}
+      {/* <Card
         style={{
           backgroundColor: "#B3E5FC",
           padding: 10,
@@ -136,7 +151,11 @@ export default function Gadget({expeditionId}) {
           </Text>
         </Card.Content>
         <Card.Actions></Card.Actions>
-      </Card>
+      </Card> */}
+      
     </View>
+    
+    
+
   );
 }

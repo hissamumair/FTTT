@@ -435,7 +435,7 @@ const Bokkpayment = () => {
       const bookingData = {
         ...route.params,
         contactNumber: route.params.contactNumber,
-        carName: "YourCarNameHere", // Replace with the actual car name if available
+        carName: "No Car", // Replace with the actual car name if available
         paymentScreenshot: secureURLRef.current, // Attach the payment screenshot URL
       };
   

@@ -178,8 +178,6 @@
 //   );
 // }
 
-
-
 import React, { useState, useCallback, useEffect } from "react";
 import {
   View,
@@ -206,23 +204,55 @@ export default function Booking() {
   // Fetch userId from AsyncStorage
   useEffect(() => {
     const fetchUserId = async () => {
-      const id = await AsyncStorage.getItem("userId");
-      setUserId(id);
+      try {
+        const id = await AsyncStorage.getItem("userId");
+        if (id) {
+          setUserId(id);
+        } else {
+          // Handle case where userId is not found
+          console.error("User ID not found in AsyncStorage");
+        }
+      } catch (error) {
+        console.error("Error fetching user ID:", error);
+      }
     };
     fetchUserId();
   }, []);
 
-  // Query to fetch bookings
+  // Query to fetch bookings with proper error handling
   const { data, error, isLoading, refetch } = useGetAllBookingsForUserQuery(userId, {
-    skip: !userId,
+    skip: !userId, // Skip the query if userId is not available
+    refetchOnMountOrArgChange: true, // Refetch when component mounts or userId changes
   });
 
-  // Pull-to-refresh handler
-  const onRefresh = useCallback(() => {
+  // Pull-to-refresh handler with proper error handling
+  const onRefresh = useCallback(async () => {
     setRefreshing(true);
-    refetch();
-    setTimeout(() => setRefreshing(false), 1000);
+    try {
+      await refetch();
+    } catch (error) {
+      console.error("Error refreshing bookings:", error);
+    } finally {
+      setRefreshing(false);
+    }
   }, [refetch]);
+
+  // Show login message if no userId
+  if (!userId) {
+    return (
+      <View style={styles.container}>
+        <View style={styles.imageContainer}>
+          <Image
+            style={styles.image}
+            source={require("../../../assets/icons/hickes.jpg")}
+          />
+        </View>
+        <View style={styles.messageContainer}>
+          <Text style={styles.errorText}>Please log in to view your bookings</Text>
+        </View>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
@@ -243,31 +273,28 @@ export default function Booking() {
         >
           <Text style={styles.tabText}>Trip Booking</Text>
         </TouchableOpacity>
-        {/* <TouchableOpacity
-          style={[
-            styles.tab,
-            selectedTab === "Transport Booking" && styles.selectedTab
-          ]}
-          onPress={() => {
-            setSelectedTab("Transport Booking");
-            navigation.navigate("HomeStack", { screen: "Transportbooking" });
-          }}
-        >
-          <Text style={styles.tabText}>Transport Booking</Text>
-        </TouchableOpacity> */}
       </View>
 
       <View style={styles.titleContainer}>
         <Text style={styles.titleText}>
-        Your bookings are displayed in the table below:        </Text>
+          Your bookings are displayed in the table below:
+        </Text>
       </View>
 
       {isLoading ? (
         <ActivityIndicator size="large" color="green" style={styles.loader} />
       ) : error ? (
-        <Text style={styles.errorText}>
-          Failed to fetch bookings. Please try again.
-        </Text>
+        <View style={styles.messageContainer}>
+          <Text style={styles.errorText}>
+            {error?.data?.message || "Failed to fetch bookings. Please try again."}
+          </Text>
+          <TouchableOpacity
+            style={styles.retryButton}
+            onPress={() => refetch()}
+          >
+            <Text style={styles.retryButtonText}>Retry</Text>
+          </TouchableOpacity>
+        </View>
       ) : (
         <ScrollView
           horizontal
@@ -294,7 +321,7 @@ export default function Booking() {
             {data?.length > 0 ? (
               data.map((item, index) => (
                 <DataTable.Row
-                  key={index}
+                  key={item._id || index}
                   style={[
                     styles.dataTableRow,
                     { 
@@ -387,9 +414,27 @@ const styles = StyleSheet.create({
   loader: {
     marginTop: 20
   },
+  messageContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 20
+  },
   errorText: {
     color: "red",
-    textAlign: "center"
+    textAlign: "center",
+    marginBottom: 15
+  },
+  retryButton: {
+    backgroundColor: "green",
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 5,
+    marginTop: 10
+  },
+  retryButtonText: {
+    color: "white",
+    fontWeight: "bold"
   },
   dataTable: {
     backgroundColor: "#FFFFFF", 

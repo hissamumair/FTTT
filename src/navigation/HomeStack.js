@@ -16,6 +16,7 @@ import Carbooking from '../screens/Dashboard/booking/carbooking';
 import Carbookingconfirm from '../screens/Dashboard/booking/carbookingconfirm';
 import Startchat from '../screens/Dashboard/K2/startchat';
 import Menuscreen from '../screens/menuscreen';
+import Image from '../components/image';
 // import TabNavigator from './TabNavigator';
 
 const Stack = createNativeStackNavigator();
@@ -37,6 +38,8 @@ const HomeStack = () => {
       <Stack.Screen name="Carbooking" component={Carbooking} />
       <Stack.Screen name="Carbookingconfirm" component={Carbookingconfirm}/>
       <Stack.Screen name="Menuscreen" component={Menuscreen}/>
+      <Stack.Screen name="Image" component={Image}/>
+
 
       <Stack.Screen name="Startchat" component={Startchat}/>
 

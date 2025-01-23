@@ -154,21 +154,15 @@
 // }
 
 
-
-import React from "react";
-import { View, Text, Image, ScrollView } from "react-native";
+import React, { useState } from "react";
+import { View, Text, Image, ScrollView, Modal, TouchableOpacity } from "react-native";
 import { Card, Divider } from "react-native-paper";
 import { useGetCampingByPlaceIdQuery } from "../../../redux/reducers/camping/campingThunk";
+import ImageComponent from "../../../components/image";
 
 export default function Campingpoint({ expeditionId }) {
   const { data: campData, isLoading, error } = useGetCampingByPlaceIdQuery(expeditionId);
 
-  const images = [
-    require("../../../assets/icons/k22.png"),
-    require("../../../assets/icons/k21.png"),
-    require("../../../assets/icons/k22.png"),
-    require("../../../assets/icons/k22.png"),
-  ];
 
   if (isLoading) {
     return <Text>Loading...</Text>; // Handle loading state
@@ -179,7 +173,7 @@ export default function Campingpoint({ expeditionId }) {
   }
 
   return (
-    <View>
+    <View style={{ flex: 1, padding: 10 }}>
       <View style={{ marginVertical: 5, marginBottom: 10 }}>
         <Text style={{ fontSize: 13, fontWeight: "bold", color: "black" }}>
           Camping points
@@ -224,31 +218,9 @@ export default function Campingpoint({ expeditionId }) {
           </Text>
         </Card.Content>
       </Card>
+<ImageComponent/>
+     
 
-      <View style={{ justifyContent: "center", alignItems: "center", marginVertical: 10 }}>
-        <Text style={{ fontSize: 18, color: "black", marginBottom: 10 }}>Hiking Location</Text>
-        <Image
-          source={require("../../../assets/icons/mapk2.png")} // Correct path to your image
-          style={{ width: "100%", resizeMode: "contain" }} // Set desired dimensions and resize mode
-        />
-      </View>
-
-      <View style={{ justifyContent: "center", alignItems: "center", marginTop: 10 }}>
-        <Text style={{ fontSize: 15, fontWeight: "bold", marginVertical: 5, color: "black" }}>
-          Photo Gallery
-        </Text>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          <View style={{ flexDirection: "row", alignItems: "center" }}>
-            {images.map((image, index) => (
-              <Image
-                key={index}
-                source={image}
-                style={{ width: 100, height: 100, marginRight: 10 }}
-              />
-            ))}
-          </View>
-        </ScrollView>
-      </View>
     </View>
   );
 }

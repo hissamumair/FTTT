@@ -1,168 +1,5 @@
-// import React, {useEffect, useState} from "react";
-// import {View, Text, TouchableOpacity, StyleSheet, Alert} from "react-native";
-// import {TextInput} from "react-native-paper";
-// import {useNavigation} from "@react-navigation/native";
-// import {Formik} from "formik";
-// import * as Yup from "yup";
-// import {baseURL} from "../../../redux/baseURL";
-// import AsyncStorage from "@react-native-async-storage/async-storage";
-// export default function OTPVerificationScreen() {
-//   const [isLoading, setIsLoading] = useState(false);
-//   const navigation = useNavigation();
 
-//   // Validation schema for OTP
-//   const validationSchema = Yup.object().shape({
-//     otp: Yup.string()
-//       .length(4, "OTP must be 4 digits")
-//       .required("OTP is required")
-//       .matches(/^\d+$/, "OTP must only contain digits"),
-//   });
-
-//   // Mock function to simulate OTP verification API call
-//   const [userEmail, setUserEmail] = useState("");
-//   useEffect(() => {
-//     const getUserEmail = async () => {
-//       const mail = await AsyncStorage.getItem("userEmail");
-//       setUserEmail(mail);
-//     };
-//     getUserEmail();
-//   }, []);
-
-//   const handleOTPVerification = async values => {
-//     setIsLoading(true);
-// console.log("adf",userEmail,values.otp)
-// const data = JSON.stringify({code: values.otp, email: userEmail})
-
-//     try {
-//       // Replace with your actual API call
-//       const response = await fetch(`${baseURL}/api/user/verifyEmail`, {
-//         method: "POST",
-//         headers: {
-//           "Content-Type": "application/json",
-//         },
-//         body: data,
-//       });
-// console.log("object",await response.json())
-//       const result = await response.json();
-
-//       if (result.user) {
-//         Alert.alert("Success", "OTP verified successfully!");
-//         navigation.navigate("Login"); // Replace 'NextScreen' with the actual screen you want to navigate to
-//       } else {
-//         Alert.alert("Error", result.message || "Invalid OTP");
-//       }
-//     } catch (error) {
-//       console.error("Error verifying OTP:", error);
-//       Alert.alert("Error", "An error occurred while verifying the OTP");
-//     } finally {
-//       setIsLoading(false);
-//     }
-//   };
-
-//   return (
-//     <View style={styles.container}>
-//       <Text style={styles.title}>OTP Verification</Text>
-//       <Text style={styles.subtitle}>
-//         Enter the 6-digit OTP sent to your email
-//       </Text>
-
-//       <Formik
-//         initialValues={{otp: ""}}
-//         validationSchema={validationSchema}
-//         onSubmit={handleOTPVerification}>
-//         {({
-//           handleChange,
-//           handleBlur,
-//           handleSubmit,
-//           values,
-//           errors,
-//           touched,
-//         }) => (
-//           <>
-//             <TextInput
-//               label="OTP"
-//               value={values.otp}
-//               onChangeText={handleChange("otp")}
-//               onBlur={handleBlur("otp")}
-//               mode="outlined"
-//               keyboardType="numeric"
-//               maxLength={6}
-//               style={styles.input}
-//               error={touched.otp && errors.otp}
-//             />
-//             {touched.otp && errors.otp && (
-//               <Text style={styles.errorText}>{errors.otp}</Text>
-//             )}
-
-//             <TouchableOpacity
-//               onPress={handleSubmit}
-//               style={[styles.button, isLoading && {backgroundColor: "#ccc"}]}
-//               disabled={isLoading}>
-//               <Text style={styles.buttonText}>
-//                 {isLoading ? "Verifying..." : "Verify OTP"}
-//               </Text>
-//             </TouchableOpacity>
-//           </>
-//         )}
-//       </Formik>
-
-//       <TouchableOpacity
-//         onPress={() => Alert.alert("Resend OTP", "OTP has been resent!")}>
-//         <Text style={styles.resendText}>Resend OTP</Text>
-//       </TouchableOpacity>
-//     </View>
-//   );
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     padding: 20,
-//     justifyContent: "center",
-//     backgroundColor: "#f9f9f9",
-//   },
-//   title: {
-//     fontSize: 24,
-//     fontWeight: "bold",
-//     textAlign: "center",
-//     color: "#333",
-//     marginBottom: 10,
-//   },
-//   subtitle: {
-//     fontSize: 16,
-//     textAlign: "center",
-//     color: "#666",
-//     marginBottom: 20,
-//   },
-//   input: {
-//     marginBottom: 10,
-//   },
-//   button: {
-//     backgroundColor: "green",
-//     paddingVertical: 10,
-//     borderRadius: 5,
-//     alignItems: "center",
-//     marginTop: 10,
-//   },
-//   buttonText: {
-//     color: "#fff",
-//     fontSize: 18,
-//   },
-//   resendText: {
-//     marginTop: 20,
-//     textAlign: "center",
-//     color: "green",
-//     fontSize: 14,
-//   },
-//   errorText: {
-//     color: "red",
-//     fontSize: 12,
-//     marginBottom: 10,
-//   },
-// });
-
-
-
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 import React, { useEffect, useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet, Alert } from "react-native";
@@ -260,6 +97,16 @@ export default function OTPVerificationScreen() {
 
   return (
     <View style={styles.container}>
+      <TouchableOpacity 
+  onPress={() => navigation.goBack()}
+  style={{
+    position: 'absolute',
+    top: 20,
+    left: 20,
+    zIndex: 1
+  }}>
+  <Icon name="arrow-left" size={30} color="green" />
+</TouchableOpacity>
       <Text style={styles.title}>OTP Verification</Text>
       <Text style={styles.subtitle}>
         Enter the 4-digit OTP sent to your email

@@ -8,56 +8,8 @@ import { useGetHikingByPlaceIdQuery } from "../../../redux/reducers/hiking/hikin
 export default function Hickingpoint({expeditionId}) {
   
   const {data, isLoading} = useGetHikingByPlaceIdQuery(expeditionId)
+  console.log("data",data)
 
-  // const data = [
-  //   {
-  //     heading:"Hicking Track Details",
-  //     summary:"The standard trekking route to reach the base of K2 is known as the Baltoro Glacier and Concordia Trek. This is one of the most spectacular and challenging treks in the world, offering breathtaking views of some of the highest peaks in the Karakoram Range. Here's a detailed outline of the typical hiking trail leading to K2 Base Camp",
-  //   },
-  //   {
-  //     title: "Hicking trail:",
-  //     day: "Day3:",
-
-  //     path: "Trail 1 (3,000 m / 9,842 ft):",
-      
-  //     desc: "Drive from Skardu to Askole, the last village accessible by road. The journey takes about 6-8 hours and offers stunning views of the Karakoram landscape..",
-  //   },
-  //   {
-  //     day: "Day4:",
-
-  //     path: "Trail 2 (3,000 m / 9,842 ft):",
-      
-  //     desc: "Drive from Skardu to Askole, the last village accessible by road. The journey takes about 6-8 hours and offers stunning views of the Karakoram landscape..",
-  //   },
-  //   {
-  //     day: "Day5:",
-
-  //     path: "Trail 3 (3,000 m / 9,842 ft):",
-      
-  //     desc: "Drive from Skardu to Askole, the last village accessible by road. The journey takes about 6-8 hours and offers stunning views of the Karakoram landscape..",
-  //   },
-  //   {
-  //     day: "Day6:",
-
-  //     path: "Trail 4 (3,000 m / 9,842 ft):",
-      
-  //     desc: "Drive from Skardu to Askole, the last village accessible by road. The journey takes about 6-8 hours and offers stunning views of the Karakoram landscape..",
-  //   },
-  //   {
-  //     day: "Day7:",
-
-  //     path: "Trail 5 (3,000 m / 9,842 ft):",
-      
-  //     desc: "Drive from Skardu to Askole, the last village accessible by road. The journey takes about 6-8 hours and offers stunning views of the Karakoram landscape..",
-  //   },
-  //   {
-  //     day: "Day8:",
-
-  //     path: "Trail 6 (3,000 m / 9,842 ft):",
-      
-  //     desc: "Drive from Skardu to Askole, the last village accessible by road. The journey takes about 6-8 hours and offers stunning views of the Karakoram landscape..",
-  //   },
-  // ];
 
   const images = [
     require("../../../assets/icons/k22.png"),

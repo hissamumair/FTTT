@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { View, Text, Image, ScrollView, Modal, TouchableOpacity } from "react-native";
-import { Card } from "react-native-paper";
+import { View,  Image, ScrollView, Modal, TouchableOpacity } from "react-native";
+import { Card,Text, } from "react-native-paper";
 import { useGetSafetybyPlaceIdQuery } from "../../../redux/reducers/safety/safetyThunk";
 
 export default function Safety({ expeditionId }) {

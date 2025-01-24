@@ -155,8 +155,8 @@
 
 
 import React, { useState } from "react";
-import { View, Text, Image, ScrollView, Modal, TouchableOpacity } from "react-native";
-import { Card, Divider } from "react-native-paper";
+import { View, Image, ScrollView, Modal, TouchableOpacity } from "react-native";
+import { Card, Divider,Text } from "react-native-paper";
 import { useGetCampingByPlaceIdQuery } from "../../../redux/reducers/camping/campingThunk";
 import ImageComponent from "../../../components/image";
 

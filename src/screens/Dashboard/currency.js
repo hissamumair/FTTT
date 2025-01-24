@@ -98,11 +98,11 @@ export default function Currency() {
           style={styles.headerImage}
           source={require("../../assets/icons/currency.jpg")}
         />
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={styles.settingsButton}
           onPress={handleSettingsPress}>
           <AntDesignIcon name="setting" size={30} color="white" />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <View style={styles.headerTitleContainer}>
           <Text style={styles.headerTitle}>Currency Converter</Text>
         </View>

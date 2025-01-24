@@ -69,7 +69,7 @@ export default function Review({expeditionId}) {
                     ? {
                         uri: review?.image,
                       }
-                    : require("../../../assets/icons/profile.png")
+                    : require("../../../assets/icons/user.png")
                 } // Your image URL here
                 style={{
                   width: 40,

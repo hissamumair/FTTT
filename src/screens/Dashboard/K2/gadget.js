@@ -1,6 +1,6 @@
 import React from "react";
-import {View, Text, Image, ScrollView} from "react-native";
-import {Card, Divider} from "react-native-paper";
+import {View, Image, ScrollView} from "react-native";
+import {Card, Divider,Text} from "react-native-paper";
 import {useDispatch, useSelector} from "react-redux";
 import {setGadgets} from "./../../../redux/reducers/features/gadgetSlice";
 import {useGetGadgetByPlaceIdQuery} from "../../../redux/reducers/gadget/gadgetThunk";

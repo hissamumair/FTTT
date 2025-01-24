@@ -442,7 +442,7 @@ const Bokkpayment = () => {
   
       // Call the createBooking mutation
       const response = await createBooking(bookingData);
-  
+  console.log("sdfdsf",response)
       if (response?.data) {
         // Alert to show booking creation was successful
         Alert.alert(
@@ -462,6 +462,7 @@ const Bokkpayment = () => {
         Alert.alert("Error", "Unable to create the booking. Please try again later.");
       }
     } catch (error) {
+      console.log("object",error)
       Alert.alert("Error", "Unable to create the booking. Please try again later.");
     }
   };

@@ -69,7 +69,7 @@ export default function Safety({ expeditionId }) {
                 >
                   {index + 1}: {equipment.name}
                 </Text>
-                <Text style={{ fontSize: 10, fontWeight: "400" }}>
+                <Text style={{ fontSize: 10, fontWeight: "400", color: "black"  }}>
                   {equipment.description}
                 </Text>
               </View>

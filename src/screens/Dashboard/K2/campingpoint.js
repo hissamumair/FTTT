@@ -178,7 +178,7 @@ export default function Campingpoint({ expeditionId }) {
         <Text style={{ fontSize: 13, fontWeight: "bold", color: "black" }}>
           Camping points
         </Text>
-        <Text style={{ fontSize: 11, fontWeight: "400" }}>{campData?.description}</Text>
+        <Text style={{ fontSize: 11, fontWeight: "400", color: "black" }}>{campData?.description}</Text>
         {campData?.track?.map((track, index) => (
           <View key={index} style={{ marginVertical: 5 }}>
             <Text style={{ fontSize: 13, fontWeight: "600", color: "black" }}>
@@ -187,7 +187,7 @@ export default function Campingpoint({ expeditionId }) {
             <Text style={{ fontSize: 10, fontWeight: "bold", color: "black" }}>
               {track.day.dayDescription}
             </Text>
-            <Text style={{ fontSize: 10, fontWeight: "400" }}>
+            <Text style={{ fontSize: 10, fontWeight: "400" , color: "black" }}>
               Height: {track.height.meters} meters / {track.height.feet} feet
             </Text>
           </View>

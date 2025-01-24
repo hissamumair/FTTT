@@ -30,15 +30,15 @@ export default function Hickingpoint({ expeditionId }) {
       <View style={{ marginVertical: 5, marginBottom: 10 }}>
         <>
           <Text style={{ fontSize: 14, fontWeight: "bold", color: "black" }}>Hicking Track Details</Text>
-          <Text style={{ fontSize: 11, fontWeight: "400" }}>{data?.description}</Text>
+          <Text style={{ fontSize: 11, fontWeight: "400" ,color: "black"}}>{data?.description}</Text>
         </>
         {data?.trails?.map((trail, index) => (
           <View key={index} style={{ marginVertical: 5, marginTop: 5 }}>
-            <Text style={{ fontSize: 13, fontWeight: "600" }}>{trail?.dayName}</Text>
+            <Text style={{ fontSize: 13, fontWeight: "600",color:"black" }}>{trail?.dayName}</Text>
             <Text style={{ fontSize: 10, fontWeight: "bold", color: "black" }}>
               {trail.trailName} ({trail?.height?.meters} m, {trail?.height?.feet} ft)
             </Text>
-            <Text style={{ fontSize: 10, fontWeight: "400" }}>{trail?.trailDescription}</Text>
+            <Text style={{ fontSize: 10, fontWeight: "400",color:"black" }}>{trail?.trailDescription}</Text>
           </View>
         ))}
       </View>

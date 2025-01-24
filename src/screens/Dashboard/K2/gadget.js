@@ -25,7 +25,7 @@ export default function Gadget({expeditionId}) {
           <Text style={{fontSize: 14, fontWeight: "bold", color: "black"}}>
             Complete hicking gadgets guide
           </Text>
-          <Text style={{fontSize: 12, fontWeight: "400"}}>
+          <Text style={{fontSize: 12, fontWeight: "400", color: "black" }}>
             {data?.description}
           </Text>
         </>
@@ -53,6 +53,7 @@ export default function Gadget({expeditionId}) {
                     fontWeight: "400",
                     marginTop: 0,
                     marginBottom: 0,
+                     color: "black" 
                   }}>
                   {tool?.description}
                 </Text>

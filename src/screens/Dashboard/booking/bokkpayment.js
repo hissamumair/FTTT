@@ -344,6 +344,7 @@ const Bokkpayment = () => {
   const navigation = useNavigation();
   const route = useRoute();
   const { fullName, email, contactNumber, price } = route.params;
+
   const secureURLRef = useRef("");
 
   const [isModalVisible, setModalVisible] = useState(false);
@@ -526,11 +527,11 @@ const Bokkpayment = () => {
           <Text style={{ fontSize: 16, color: "black", marginBottom: 5 }}>
             Email ID: {email}
           </Text>
-          <Text style={{ fontSize: 16, color: "black", marginBottom: 5 }}>
+          {/* <Text style={{ fontSize: 16, color: "black", marginBottom: 5 }}>
             Contact No: {contactNumber}
-          </Text>
-          <Text style={{ fontSize: 16, color: "black", marginBottom: 5 }}>
-            Price: ${price}
+          </Text> */}
+          <Text style={{ fontSize: 16, color: "black", marginBottom: 5,fontWeight:"bold" }}>
+            Price: Pkr {price}
           </Text>
         </View>
 

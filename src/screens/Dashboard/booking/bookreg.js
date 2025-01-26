@@ -146,6 +146,10 @@ const Bookreg = ({route}) => {
           placeholder="Email Id"
           value={email}
           onChangeText={setEmail}
+          autoCapitalize="none" // Ensures no capitalization
+          // autoCorrect={false} 
+          keyboardType="email-address" // Optimized for email input
+
           style={{
             borderWidth: 1,
             borderColor: "green",

@@ -181,6 +181,8 @@ export default function LoginScreen() {
           style={{ marginBottom: 10, marginTop: 10}}
           keyboardType="email-address"
           autoCapitalize="none" // Ensures no capitalization
+          // keyboardType="email-address" // Optimized for email input
+
 
           error={formik.touched.email && Boolean(formik.errors.email)}
         />

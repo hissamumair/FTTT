@@ -21,7 +21,6 @@ export default function Booking() {
   const [userId, setUserId] = useState(null);
   const [refreshing, setRefreshing] = useState(false);
 
-  // Fetch userId from AsyncStorage
   useEffect(() => {
     const fetchUserId = async () => {
       try {
@@ -29,7 +28,6 @@ export default function Booking() {
         if (id) {
           setUserId(id);
         } else {
-          // Handle case where userId is not found
           console.error("User ID not found in AsyncStorage");
         }
       } catch (error) {

@@ -1,8 +1,8 @@
 
 
 import React, { useEffect } from "react";
-import { View, Text, TouchableOpacity, Image, Alert } from "react-native";
-import { TextInput, Button, Checkbox, Menu, ActivityIndicator } from "react-native-paper";
+import { View, TouchableOpacity, Image, Alert } from "react-native";
+import { TextInput, Button, Checkbox, Menu, ActivityIndicator,Text } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { useFormik } from "formik";
@@ -180,6 +180,10 @@ export default function LoginScreen() {
           mode="outlined"
           style={{ marginBottom: 10, marginTop: 10}}
           keyboardType="email-address"
+          autoCapitalize="none" // Ensures no capitalization
+          // keyboardType="email-address" // Optimized for email input
+
+
           error={formik.touched.email && Boolean(formik.errors.email)}
         />
         {formik.touched.email && formik.errors.email && (
@@ -195,7 +199,7 @@ export default function LoginScreen() {
           secureTextEntry={secureTextEntry}
           right={
             <TextInput.Icon
-              name={secureTextEntry ? "eye-off" : "eye"}
+              icon={secureTextEntry ? "eye-off" : "eye"}
               onPress={() => setSecureTextEntry(!secureTextEntry)}
             />
           }
@@ -251,30 +255,30 @@ export default function LoginScreen() {
         </Text>
       </Text>
 
-      <View
+      {/* <View
         style={{
           flexDirection: "row",
           alignItems: "center",
           marginVertical: 10,
-        }}>
-        <View
+        }}> */}
+        {/* <View
           style={{ flex: 1, height: 1, backgroundColor: "#ccc", marginRight: 10 }}
-        />
-        <Text style={{ textAlign: "center", marginHorizontal: 10 }}>
+        /> */}
+        {/* <Text style={{ textAlign: "center", marginHorizontal: 10 }}>
           Or login with
-        </Text>
-        <View
+        </Text> */}
+        {/* <View
           style={{ flex: 1, height: 1, backgroundColor: "#ccc", marginLeft: 10 }}
-        />
-      </View>
+        /> */}
+      {/* </View>
 
       {googleError && (
         <Text style={{ color: 'red', textAlign: 'center', marginBottom: 10 }}>
           {googleError}
         </Text>
-      )}
+      )} */}
 
-      <View style={{ width: "100%", alignItems: "center", marginTop: 20 }}>
+      {/* <View style={{ width: "100%", alignItems: "center", marginTop: 20 }}>
         <TouchableOpacity
           onPress={handleGoogleSignIn}
           disabled={isLoading}
@@ -296,7 +300,7 @@ export default function LoginScreen() {
           />
           <Text style={{ fontSize: 16 }}>Google Account</Text>
         </TouchableOpacity>
-      </View>
+      </View> */}
     </View>
   );
 }

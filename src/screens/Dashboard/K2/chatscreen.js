@@ -6,13 +6,11 @@ export default function Chatscreen() {
   const navigation=useNavigation();
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center", padding: 20 }}>
-      {/* Chat Image */}
       <Image
         source={require("../../../assets/icons/chat1.png")} // Replace with your chat image path
         style={{ width: 100, height: 100, marginBottom: 90,marginTop:70 }} // Inline styles for the image
       />
 
-      {/* Message Text */}
       <Text
         style={{
           fontSize: 13,

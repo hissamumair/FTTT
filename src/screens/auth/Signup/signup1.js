@@ -140,6 +140,8 @@ export default function Signup1() {
               mode="outlined"
               style={{marginBottom: 10, marginTop: 10}}
               keyboardType="email-address"
+              autoCapitalize="none" // Ensures no capitalization
+
               error={touched.email && errors.email}
             />
             {touched.email && errors.email && (
@@ -262,14 +264,14 @@ export default function Signup1() {
                   marginRight: 10,
                 }}
               />
-              <Text
+              {/* <Text
                 style={{
                   textAlign: "center",
                   marginHorizontal: 10,
                   color: "black",
                 }}>
                 Or login with
-              </Text>
+              </Text> */}
               <View
                 style={{
                   flex: 1,
@@ -280,7 +282,7 @@ export default function Signup1() {
               />
             </View>
 
-            <View style={{width: "100%", alignItems: "center", margin: 1}}>
+            {/* <View style={{width: "100%", alignItems: "center", margin: 1}}>
               <TouchableOpacity
                 onPress={() => console.log("Google Login")}
                 style={{
@@ -300,7 +302,7 @@ export default function Signup1() {
                 />
                 <Text style={{fontSize: 16}}>Google Account</Text>
               </TouchableOpacity>
-            </View>
+            </View> */}
           </>
         )}
       </Formik>

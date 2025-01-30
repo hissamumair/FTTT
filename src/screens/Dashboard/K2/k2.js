@@ -79,7 +79,7 @@ export default function K2({route}) {
     console.log(`${categoryName} card pressed`);
     setSelectedTab(categoryName.replace(/ /g, ""));
   };
-  const [selectedTab, setSelectedTab] = useState("");
+  const [selectedTab, setSelectedTab] = useState("hiking");
 
   return (
     <ScrollView style={{flex: 1, padding: 0}}>
